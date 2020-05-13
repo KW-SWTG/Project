@@ -216,7 +216,7 @@
     </Window.Resources>
 
 
-    <Grid Background="Black" Height="600" Width="1000" Opacity="0.5">
+    <Grid Background="Black" Height="600" Width="1000" Opacity="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="44"/>
             <RowDefinition Height="0*"/>
