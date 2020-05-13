@@ -55,7 +55,7 @@ namespace PROJECT
         }
     }
 
-    class WebLib
+    class  WebLib
     {
         static public bool findPoster(mshtml.HTMLDocument doc, MovieDB db)
         {
