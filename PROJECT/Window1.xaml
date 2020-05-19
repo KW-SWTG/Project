@@ -5,20 +5,156 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJECT"
         mc:Ignorable="d"
-        Title="Window1" Height="465.912" Width="833.156" WindowStyle="None" WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True">
+        Title="Window1" Height="631.351" Width="896.008" WindowStyle="None" WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True">
 
     <Window.Background>
         <SolidColorBrush Color="Black" Opacity="0.6"/>
     </Window.Background>
-    <Grid HorizontalAlignment="Left" Height="157" Margin="67,71,0,0" VerticalAlignment="Top" Width="159">
+
+
+    <Grid>
+        <!--// Divide Section //-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <!--// Head //-->
+
+        <Grid Grid.Row="0">
+        </Grid>
+
+        <!--// Body //-->
+
+        <Grid Grid.Row="1">
+        </Grid>
+        <!--// Footer //-->
+
+        <Grid Grid.Row="2">
+        </Grid>
+
+        <Button Content="close" Grid.Row="0" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="69" Click="Button_Click_1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontFamily="Malgun Gothic" FontWeight="Bold" FontSize="15"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="330"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="360"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Column="1" Grid.Row="0">
+
+                    <Image x:Name="mvImg" HorizontalAlignment="Left" Height="281" VerticalAlignment="Top" Width="223" Margin="45,10,0,0" />
+                    <Label x:Name="mvName" HorizontalAlignment="Left" Height="34" Margin="91,296,0,0" VerticalAlignment="Top" Width="123" IsEnabled="False" Foreground="White" FontSize="20" FontFamily="GyeonggiTitle Light" FontWeight="Bold" />
+                    <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="100" Margin="156,-45,0,0" VerticalAlignment="Top" Width="100" Visibility="Hidden" LoadCompleted="webBrowser_LoadCompleted"/>
+
+                </Grid>
+                <Grid Grid.Column="2" Grid.Row="0" Margin="10">
+                    <TextBox x:Name="txtMovie" HorizontalAlignment="Center" Height="355" TextWrapping="Wrap" Text="YOUTUBE " VerticalAlignment="Center" Width="482" FontSize="50" FontWeight="Bold" TextAlignment="Center"/>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="1">
+
+
+                    <Label Content="전문가 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="97" Foreground="White" Margin="40,-7,0,0" FontSize="15"/>
+                    <Label Content="관람객 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="89" Foreground="White" Margin="154,-7,0,0" FontSize="15"/>
+                    <TextBox x:Name="proRate" HorizontalAlignment="Left" Height="25"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="183,24,0,0" FontWeight="Bold"/>
+                    <TextBox x:Name="audRate" HorizontalAlignment="Left" Margin="66,24,0,0" Height="27" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontWeight="Bold" FontSize="14"/>
+                    <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Height="123" Margin="0,54,0,0" Stroke="#FFE8FF9B" VerticalAlignment="Top" Width="330" />
+
+                    <Label Content="상영시간" HorizontalAlignment="Left" Height="30" Width="60" Foreground="White" Margin="10,59,0,111" />
+                    <Label Content="국가" HorizontalAlignment="Left" Height="30" Width="38" Foreground="White" Margin="10,104,0,66" />
+                    <Label Content="감독" HorizontalAlignment="Left" Height="30" Width="38" Foreground="White" Margin="10,142,0,28" />
+                    <Label Content="관람등급" HorizontalAlignment="Left" Height="30" Width="61" Foreground="White" Margin="154,104,0,66" />
+                    <Label Content="장르" HorizontalAlignment="Left" Height="30" Width="42" Foreground="White" Margin="154,59,0,111" />
+                    <TextBox x:Name="runTIme" HorizontalAlignment="Left" Height="28" Margin="75,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
+                    <TextBox x:Name="direct" HorizontalAlignment="Left" Height="30" Margin="75,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
+                    <TextBox x:Name="country" HorizontalAlignment="Left" Height="30" Margin="75,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold"/>
+                    <TextBox x:Name="Genre" HorizontalAlignment="Left" Height="30" Margin="220,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.85,0.586" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
+                    <TextBox x:Name="age" HorizontalAlignment="Left" Height="66" Margin="220,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
+
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" >
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="2" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="3" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="4" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="5" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="6" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="7" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="8" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="9" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Column="10" Margin="10">
+                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+    <!-- <Grid HorizontalAlignment="Left" Height="183" Margin="67,71,0,0" VerticalAlignment="Top" Width="161">
         <Button Content="close" HorizontalAlignment="Left" Height="33" Margin="-56,-63,0,0" VerticalAlignment="Top" Width="69" Click="Button_Click_1"/>
-        <Image x:Name="mvImg" HorizontalAlignment="Left" Height="256" Margin="-39,-20,-97,-79" VerticalAlignment="Top" Width="295" />
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="77" Margin="-66,317,-606,-237" Stroke="Black" VerticalAlignment="Top" Width="831"/>
-        <Label x:Name="mvName" HorizontalAlignment="Left" Height="40" Margin="50,241,0,-124" VerticalAlignment="Top" Width="106" IsEnabled="False" Foreground="White" FontSize="16" FontFamily="HYGothic-Extra"/>
+        <Image x:Name="mvImg" HorizontalAlignment="Left" Height="214" Margin="0,10,-12,-41" VerticalAlignment="Top" Width="173" />
+        <Label x:Name="mvName" HorizontalAlignment="Left" Height="53" Margin="20,239,0,-109" VerticalAlignment="Top" Width="123" IsEnabled="False" Foreground="White" FontSize="20" FontFamily="GyeonggiTitle Light" FontWeight="Bold"/>
         <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="100" Margin="156,-45,-97,0" VerticalAlignment="Top" Width="100" Visibility="Hidden" LoadCompleted="webBrowser_LoadCompleted"/>
         <TextBox x:Name="txtMovie" HorizontalAlignment="Left" Height="315" Margin="281,-34,-576,-124" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="454"/>
+        <Button Content="Button" Height="121" Margin="-10,408,63,-346" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="474,408,-421,-346" VerticalAlignment="Top" Width="108"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="148,408,-95,-346" VerticalAlignment="Top" Width="108"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="316,408,-263,-346" VerticalAlignment="Top" Width="108"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="627,408,-574,-346" VerticalAlignment="Top" Width="108"/>
+        <Label Content="전문가 평점" HorizontalAlignment="Left" Height="31" Margin="-10,308,0,-156" VerticalAlignment="Top" Width="80" Foreground="White"/>
+        <Label Content="관람객 평점" HorizontalAlignment="Left" Height="31" Margin="75,308,-12,-156" VerticalAlignment="Top" Width="98" Foreground="White"/>
+        <TextBox x:Name="proRate" HorizontalAlignment="Left" Height="25" Margin="0,339,0,-181" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="41" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
+        <TextBox x:Name="audRate" HorizontalAlignment="Left" Height="25" Margin="94,339,0,-181" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}"/>
 
-    </Grid>
+    </Grid>-->
 
 
 

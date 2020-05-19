@@ -80,21 +80,32 @@ namespace PROJECT
         private void printMovie()
         {
             StringBuilder str = new StringBuilder();
+            proRate.Text = db.expRating;
+            audRate.Text = db.audRating;
+            runTIme.Text = db.runningTime;
+            //direct, enre, age counrey, rintom
+            direct.Text =printList(db.director);
+            Genre.Text = printList(db.genre);
+            age.Text = db.movieRating;
+            country.Text = printList(db.nation);
 
-            str.AppendLine("제목 : " + db.title);
-            str.AppendLine("관람객 평점 : " + db.audRating);
-            str.AppendLine("전문가 평점 : " + db.expRating);
-            str.AppendLine("네티즌 평점 : " + db.netRating);
-            str.AppendLine("개봉일 : " + db.releaseDate);
-            str.AppendLine("상영 시간 : " + db.runningTime);
-            str.AppendLine("관람 등급 : " + db.movieRating);
-            str.AppendLine("장르 : " + printList(db.genre));
-            str.AppendLine("국가 : " + printList(db.nation));
-            str.AppendLine("감독 : " + printList(db.director));
-            str.AppendLine("배우 : " + printList(db.actor));
-            str.AppendLine("유사한 영화들 : " + printList(db.recommendMovies));
 
-            txtMovie.Text = str.ToString();
+            
+
+            //str.AppendLine("제목 : " + db.title);
+            //str.AppendLine("관람객 평점 : " + db.audRating);
+            //str.AppendLine("전문가 평점 : " + db.expRating);
+           // str.AppendLine("네티즌 평점 : " + db.netRating);
+           // str.AppendLine("개봉일 : " + db.releaseDate);
+            //str.AppendLine("상영 시간 : " + db.runningTime);
+            //str.AppendLine("관람 등급 : " + db.movieRating);
+            //str.AppendLine("장르 : " + printList(db.genre));
+            //str.AppendLine("국가 : " + printList(db.nation));
+            //str.AppendLine("감독 : " + printList(db.director));
+            //str.AppendLine("배우 : " + printList(db.actor));
+            //str.AppendLine("유사한 영화들 : " + printList(db.recommendMovies));
+            
+            //txtMovie.Text = str.ToString();
         }
 
         private void loadPoster()
