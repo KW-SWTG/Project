@@ -20,15 +20,60 @@ namespace PROJECT
     /// </summary>
     public partial class Page1 : Page
     {
-        public Page1()
+        List<string> movieList;
+        List<MovieInfo> movieInfos;
+
+        public Page1(List<string> list)
         {
             InitializeComponent();
+
+            Init(list);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Init(List<string> list)
         {
-            Window1 w1 = new Window1();
-            w1.Show();
+            // get 추천영화 리스트(제목들, 카테고리) from MainWindow.xaml
+            movieList = new List<string>(list);
+
+            // MovieInfos 생성 및 초기화
+            movieInfos = new List<MovieInfo>();
+            JsonLib.InitMovieInfo(movieInfos);
+
+            // debug
+            btnMv1.Content = list[0];
+            btnMv2.Content = list[1];
+            btnMv3.Content = list[2];
+        }
+
+        private void btnMv_Click(object sender, RoutedEventArgs e)
+        {
+            var btnOption = sender as Button;
+
+            if(null != btnOption)
+            {
+                StringBuilder extraData = new StringBuilder();
+                string title = "";
+
+                // 영화 제목
+                if (btnOption == btnMv1)
+                    title = btnMv1.Content.ToString();
+                else if (btnOption == btnMv2)
+                    title = btnMv2.Content.ToString();
+                else if (btnOption == btnMv3)
+                    title = btnMv3.Content.ToString();
+                extraData.Append(title + ",");
+
+                // 네이버 영화 url
+                string url = JsonLib.findMovieUrl(title, movieInfos);
+                if (url.Length <= 0)
+                    MessageBox.Show("url이 없습니다!");
+
+                extraData.Append(url);
+
+                // new Window and send extraData to Window1.xaml
+                Window1 w1 = new Window1(extraData.ToString());
+                w1.Show();
+            }
         }
 
         private void btnKill_Click(object sender, RoutedEventArgs e)

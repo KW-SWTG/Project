@@ -24,14 +24,11 @@ namespace PROJECT
     {
         MovieDB db;
 
-        // debug
-        List<MovieInfo> movieInfos;
-
-        public Window1()
+        public Window1(string extraData)
         {
             InitializeComponent();
 
-            InitMovie();
+            InitMovie(extraData);
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
         }
         void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -44,19 +41,14 @@ namespace PROJECT
             Close();
         }
 
-        private void InitMovie()
+        private void InitMovie(string extraData)
         {
             db = new MovieDB();
 
-            // MovieInfos - how to make them global..?
-            movieInfos = new List<MovieInfo>();
-            JsonLib.InitMovieInfo(movieInfos);
-
-            // get title & url
-            db.title = "라라랜드";
-            db.url = JsonLib.findMovieUrl(db.title, movieInfos);
-            if (db.url.Length <= 0)
-                return;
+            // get title&url from Page1.xaml
+            string[] data = extraData.Split(',');
+            db.title = data[0];
+            db.url = data[1];
 
             // init name of label(=mvName)
             mvName.Content = db.title;

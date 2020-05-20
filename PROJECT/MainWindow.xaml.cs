@@ -17,92 +17,49 @@ using System.Windows.Shapes;
 
 namespace PROJECT
 {
-
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
     
     public partial class MainWindow : Window
     {
+        List<string> movieList;
         private int cnt = 0;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            movieList = new List<string>();
 
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
         }
+
         void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void posterOption_Click(object sender, RoutedEventArgs e)
         {
+            var posterOption = sender as Button;
 
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void poster1_Click(object sender, RoutedEventArgs e)
-        {
-            cnt++;
-            if (cnt == 5)
+            if(null != posterOption)
             {
-                Page1 p1 = new Page1();
-                this.Content = p1;
+                cnt++;
+
+                if(cnt == 5)
+                {
+                    // 취향분석 알고리즘을 통해 얻은 추천영화 리스트 
+                    string[] title = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };      // 임시
+
+                    List<string> list = new List<string>();
+                    list.AddRange(title);
+
+                    Page1 p1 = new Page1(list);
+                    this.Content = p1;
+                }
             }
-            
-                //사진바꾸기..!
-        }
-
-        private void poster2_Click(object sender, RoutedEventArgs e)
-        {
-            cnt++;
-            if (cnt == 5)
-            {
-                Page1 p1 = new Page1();
-                this.Content = p1;
-            }
-
-            //사진바꾸기..!
-        }
-
-        private void poster3_Click(object sender, RoutedEventArgs e)
-        {
-            cnt++;
-            if (cnt == 5)
-            {
-                Page1 p1 = new Page1();
-                this.Content = p1;
-            }
-
-            //사진바꾸기..!
-        }
-
-        private void poster4_Click(object sender, RoutedEventArgs e)
-        {
-            cnt++;
-            if (cnt == 5)
-            {
-                Page1 p1 = new Page1();
-                this.Content = p1;
-            }
-
-            //사진바꾸기..!
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

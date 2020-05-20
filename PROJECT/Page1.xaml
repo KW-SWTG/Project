@@ -78,9 +78,9 @@
         <Button Content="SF" HorizontalAlignment="Left" Height="40" Margin="0,211,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
         <Button Content="공포" HorizontalAlignment="Left" Height="40" Margin="0,251,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
         <Button Content="코미디" HorizontalAlignment="Left" Height="40" Margin="0,290,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button Content="Button1" HorizontalAlignment="Left" Height="151" Margin="211,47,0,0" VerticalAlignment="Top" Width="137" Click="Button_Click"/>
-        <Button Content="Button2" HorizontalAlignment="Left" Height="151" Margin="402,47,0,0" VerticalAlignment="Top" Width="137"/>
-        <Button Content="Button3" HorizontalAlignment="Left" Height="151" Margin="598,47,0,0" VerticalAlignment="Top" Width="137"/>
+        <Button x:Name="btnMv1" Content="" HorizontalAlignment="Left" Height="151" Margin="211,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
+        <Button x:Name="btnMv2" Content="" HorizontalAlignment="Left" Height="151" Margin="402,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
+        <Button x:Name="btnMv3" Content="" HorizontalAlignment="Left" Height="151" Margin="598,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
         <Button Content="Button4" HorizontalAlignment="Left" Height="151" Margin="211,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button Content="Button5" HorizontalAlignment="Left" Height="151" Margin="402,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button Content="Button6" HorizontalAlignment="Left" Height="151" Margin="598,250,0,0" VerticalAlignment="Top" Width="137"/>
