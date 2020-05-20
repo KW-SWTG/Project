@@ -53,7 +53,7 @@ namespace PROJECT
             JsonLib.InitMovieInfo(movieInfos);
 
             // get title & url
-            db.title = "쇼생크 탈출";
+            db.title = "라라랜드";
             db.url = JsonLib.findMovieUrl(db.title, movieInfos);
             if (db.url.Length <= 0)
                 return;
@@ -79,33 +79,16 @@ namespace PROJECT
 
         private void printMovie()
         {
-            StringBuilder str = new StringBuilder();
+            // 전문가 평점, 관객 평점, 상영 시간
             proRate.Text = db.expRating;
             audRate.Text = db.audRating;
-            runTIme.Text = db.runningTime;
-            //direct, enre, age counrey, rintom
-            direct.Text =printList(db.director);
-            Genre.Text = printList(db.genre);
-            age.Text = db.movieRating;
-            country.Text = printList(db.nation);
+            runningTimeTxt.Text = db.runningTime;
 
-
-            
-
-            //str.AppendLine("제목 : " + db.title);
-            //str.AppendLine("관람객 평점 : " + db.audRating);
-            //str.AppendLine("전문가 평점 : " + db.expRating);
-           // str.AppendLine("네티즌 평점 : " + db.netRating);
-           // str.AppendLine("개봉일 : " + db.releaseDate);
-            //str.AppendLine("상영 시간 : " + db.runningTime);
-            //str.AppendLine("관람 등급 : " + db.movieRating);
-            //str.AppendLine("장르 : " + printList(db.genre));
-            //str.AppendLine("국가 : " + printList(db.nation));
-            //str.AppendLine("감독 : " + printList(db.director));
-            //str.AppendLine("배우 : " + printList(db.actor));
-            //str.AppendLine("유사한 영화들 : " + printList(db.recommendMovies));
-            
-            //txtMovie.Text = str.ToString();
+            // 감독, 장르, 관람 등급, 국가
+            directorTxt.Text = printList(db.director);
+            genreTxt.Text = printList(db.genre);
+            mvRatingTxt.Text = db.movieRating;
+            nationTxt.Text = printList(db.nation);
         }
 
         private void loadPoster()

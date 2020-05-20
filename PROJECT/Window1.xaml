@@ -76,11 +76,11 @@
                     <Label Content="감독" HorizontalAlignment="Left" Height="30" Width="38" Foreground="White" Margin="10,142,0,28" />
                     <Label Content="관람등급" HorizontalAlignment="Left" Height="30" Width="61" Foreground="White" Margin="154,104,0,66" />
                     <Label Content="장르" HorizontalAlignment="Left" Height="30" Width="42" Foreground="White" Margin="154,59,0,111" />
-                    <TextBox x:Name="runTIme" HorizontalAlignment="Left" Height="28" Margin="75,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
-                    <TextBox x:Name="direct" HorizontalAlignment="Left" Height="30" Margin="75,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
-                    <TextBox x:Name="country" HorizontalAlignment="Left" Height="30" Margin="75,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold"/>
-                    <TextBox x:Name="Genre" HorizontalAlignment="Left" Height="30" Margin="220,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.85,0.586" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
-                    <TextBox x:Name="age" HorizontalAlignment="Left" Height="66" Margin="220,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
+                    <TextBox x:Name="runningTimeTxt" HorizontalAlignment="Left" Height="28" Margin="75,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
+                    <TextBox x:Name="directorTxt" HorizontalAlignment="Left" Height="30" Margin="75,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
+                    <TextBox x:Name="nationTxt" HorizontalAlignment="Left" Height="30" Margin="75,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold"/>
+                    <TextBox x:Name="genreTxt" HorizontalAlignment="Left" Height="30" Margin="220,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.85,0.586" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
+                    <TextBox x:Name="mvRatingTxt" HorizontalAlignment="Left" Height="66" Margin="220,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold"/>
 
                 </Grid>
 
