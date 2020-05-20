@@ -26,6 +26,12 @@ namespace PROJECT
             get { return url; }
             set { if (value.Length > 0) url = value; }
         }
+        public string moviePoster;             //top list Movies imageurls
+        public string MoviePoster
+        {
+            get { return moviePoster; }
+            set { if (value.Length > 0) moviePoster = value; }
+        }
     }
 
     class MovieDB
@@ -209,7 +215,8 @@ namespace PROJECT
         {
             try
             {
-                String str = System.IO.File.ReadAllText("Movieli.json");
+                String str = System.IO.File.ReadAllText("TopMovieli.json");
+                //기존 json list 에서 imageUrl키값을 추가하여 선택단계에서 사용함
                 JArray jMovie = JArray.Parse(str);
 
                 for(int i = 0; i < jMovie.Count; i++)
@@ -217,6 +224,7 @@ namespace PROJECT
                     MovieInfo tmp = new MovieInfo();
                     tmp.MovieName = jMovie[i]["MovieName"].ToString();
                     tmp.Url = jMovie[i]["Url"].ToString();
+                    tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
 
                     movieInfos.Add(tmp);
                 }
