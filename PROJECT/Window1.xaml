@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJECT"
         mc:Ignorable="d"
-        Title="Window1" Height="631.351" Width="896.008" WindowStyle="None" WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
+        Title="Window1" Height="631.351" Width="896.008" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
 
     <Window.Background>
         <SolidColorBrush Color="Black" Opacity="0.6"/>

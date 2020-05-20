@@ -23,13 +23,19 @@ namespace PROJECT
     public partial class Window1 : Window
     {
         MovieDB db;
-
+        
         public Window1(string extraData)
         {
             InitializeComponent();
-
+            CenterWindowOnScreen();
             InitMovie(extraData);
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
+        }
+      private void CenterWindowOnScreen()
+        {
+           
+            this.Left = Application.Current.MainWindow.Left;
+            this.Top = Application.Current.MainWindow.Top;
         }
         void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
