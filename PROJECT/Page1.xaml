@@ -85,7 +85,7 @@
         <Button Content="Button5" HorizontalAlignment="Left" Height="151" Margin="402,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button Content="Button6" HorizontalAlignment="Left" Height="151" Margin="598,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button x:Name="btnKill" Content="Exit" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="79" Height="34" FontSize="15" Click="btnKill_Click" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
-        <Button x:Name="btnRestart" Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="10,10,0,0" Height="34" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
+        <Button x:Name="btnRestart" Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="10,10,0,0" Height="34" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold" Click="btnRestart_Click"/>
 
     </Grid>
 </Page>
