@@ -26,6 +26,7 @@ namespace PROJECT
             get { return url; }
             set { if (value.Length > 0) url = value; }
         }
+
         public string moviePoster;             //top list Movies imageurls
         public string MoviePoster
         {
@@ -246,6 +247,19 @@ namespace PROJECT
                 url = movieInfos[findIndex].Url;
 
             return url;
-        }    
+        }
+
+        public static string findPosterUrl(string title, List<MovieInfo> movieInfos)
+        {
+            string posterUrl = "";
+
+            int findIndex = movieInfos.FindIndex(r => r.MovieName.Equals(title));
+            if (findIndex < 0)
+                MessageBox.Show("url을 찾을 수 없습니다");
+            else
+                posterUrl = movieInfos[findIndex].moviePoster;
+
+            return posterUrl;
+        }
     }
 }

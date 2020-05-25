@@ -23,15 +23,15 @@ namespace PROJECT
     
     public partial class MainWindow : Window
     {
-        List<string> movieList;
         List<MovieInfo> movieInfos;
         private int cnt = 0;
 
         public MainWindow()
         {
             InitializeComponent();
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
+
             ClickedChange();
-            movieList = new List<string>();
 
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
         }
@@ -66,18 +66,17 @@ namespace PROJECT
         private void ClickedChange()
         {
             var random = new Random();
-            movieInfos = new List<MovieInfo>();
             List<MovieInfo> rand10mov = new List<MovieInfo>();
             List<ImageBrush> brushes = new List<ImageBrush>();
-            JsonLib.InitMovieInfo(movieInfos);
+
             for (int k = 0; k < 10; k++)
             {
                 rand10mov.Add(movieInfos[random.Next(movieInfos.Count)]);
                 BitmapImage i = new BitmapImage(new Uri(rand10mov[k].MoviePoster, UriKind.RelativeOrAbsolute));
                 ImageBrush brush = new ImageBrush();
+
                 brush.ImageSource = i;
                 brushes.Add(brush);
-
             }
 
             poster1.Background = brushes[0];
@@ -90,7 +89,6 @@ namespace PROJECT
             Poster8.Background = brushes[7];
             Poster9.Background = brushes[8];
             Poster10.Background = brushes[9];
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

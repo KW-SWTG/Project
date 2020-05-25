@@ -23,20 +23,25 @@ namespace PROJECT
     public partial class Window1 : Window
     {
         MovieDB db;
-        
+        List<MovieInfo> movieInfos;
+
         public Window1(string extraData)
         {
             InitializeComponent();
             CenterWindowOnScreen();
+
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
             InitMovie(extraData);
+
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
         }
-      private void CenterWindowOnScreen()
+
+        private void CenterWindowOnScreen()
         {
-           
             this.Left = Application.Current.MainWindow.Left;
             this.Top = Application.Current.MainWindow.Top;
         }
+
         void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -51,10 +56,10 @@ namespace PROJECT
         {
             db = new MovieDB();
 
-            // get title&url from Page1.xaml
-            string[] data = extraData.Split(',');
-            db.title = data[0];
-            db.url = data[1];
+            // get title from Page1.xaml
+            db.title = extraData;
+            db.url = JsonLib.findMovieUrl(db.title, movieInfos);
+            db.posterUrl = JsonLib.findPosterUrl(db.title, movieInfos);
 
             // init name of label(=mvName)
             mvName.Content = db.title;
@@ -89,20 +94,13 @@ namespace PROJECT
             nationTxt.Text = printList(db.nation);
         }
 
-        private void loadPoster()
-        {
-            if (WebLib.findPoster(webBrowser.Document as mshtml.HTMLDocument, db))
-            {
-                mvImg.Stretch = Stretch.Uniform;
-                mvImg.Source = new BitmapImage(new Uri(db.posterUrl));
-            }
-        }
-
         private void webBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             if (WebLib.UpdateMovieDB(webBrowser.Document as mshtml.HTMLDocument, db))
             {
-                loadPoster();
+                mvImg.Stretch = Stretch.Uniform;
+                mvImg.Source = new BitmapImage(new Uri(db.posterUrl));
+
                 printMovie();
             }
         }

@@ -27,18 +27,15 @@ namespace PROJECT
         public Page1(List<string> list)
         {
             InitializeComponent();
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
 
             Init(list);
         }
 
         private void Init(List<string> list)
         {
-            // get 추천영화 리스트(제목들, 카테고리) from MainWindow.xaml
+            // get 추천영화 리스트 10개(제목들, 카테고리) from MainWindow.xaml
             movieList = new List<string>(list);
-
-            // MovieInfos 생성 및 초기화
-            movieInfos = new List<MovieInfo>();
-            JsonLib.InitMovieInfo(movieInfos);
 
             // debug
             btnMv1.Content = list[0];
@@ -52,7 +49,6 @@ namespace PROJECT
 
             if(null != btnOption)
             {
-                StringBuilder extraData = new StringBuilder();
                 string title = "";
 
                 // 영화 제목
@@ -62,17 +58,9 @@ namespace PROJECT
                     title = btnMv2.Content.ToString();
                 else if (btnOption == btnMv3)
                     title = btnMv3.Content.ToString();
-                extraData.Append(title + ",");
-
-                // 네이버 영화 url
-                string url = JsonLib.findMovieUrl(title, movieInfos);
-                if (url.Length <= 0)
-                    MessageBox.Show("url이 없습니다!");
-
-                extraData.Append(url);
 
                 // new Window and send extraData to Window1.xaml
-                Window1 w1 = new Window1(extraData.ToString());
+                Window1 w1 = new Window1(title);
                 w1.Show();
             }
         }
