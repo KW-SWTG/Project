@@ -5,12 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJECT"
         mc:Ignorable="d"
-        Title="Window1" Height="631.351" Width="896.008" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
+        Title="Window1" Height="800" Width="900" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
 
     <Window.Background>
         <SolidColorBrush Color="Black" Opacity="0.6"/>
     </Window.Background>
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFB3DC8A"/>
 
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFB3DC8A"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <!--// Divide Section //-->
@@ -28,16 +84,15 @@
 
         <!--// Body //-->
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,0,0,27">
         </Grid>
         <!--// Footer //-->
 
-        <Grid Grid.Row="2">
-        </Grid>
+        <Grid Grid.Row="2"/>
 
         <Button Content="close" Grid.Row="0" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="69" Click="Button_Click_1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontFamily="Malgun Gothic" FontWeight="Bold" FontSize="15"/>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,67">
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -47,7 +102,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="360"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="180"/>
                 </Grid.RowDefinitions>
 
 
@@ -71,11 +126,11 @@
                     <TextBox x:Name="audRate" HorizontalAlignment="Left" Margin="66,24,0,0" Height="27" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontWeight="Bold" FontSize="14"/>
                     <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Height="123" Margin="0,54,0,0" Stroke="#FFE8FF9B" VerticalAlignment="Top" Width="330" />
 
-                    <Label Content="상영시간" HorizontalAlignment="Left" Height="30" Width="60" Foreground="White" Margin="10,59,0,111" />
-                    <Label Content="국가" HorizontalAlignment="Left" Height="30" Width="38" Foreground="White" Margin="10,104,0,66" />
-                    <Label Content="감독" HorizontalAlignment="Left" Height="30" Width="38" Foreground="White" Margin="10,142,0,28" />
-                    <Label Content="관람등급" HorizontalAlignment="Left" Height="30" Width="61" Foreground="White" Margin="154,104,0,66" />
-                    <Label Content="장르" HorizontalAlignment="Left" Height="30" Width="42" Foreground="White" Margin="154,59,0,111" />
+                    <Label Content="상영시간" HorizontalAlignment="Left" Width="60" Foreground="White" Margin="10,59,0,81" />
+                    <Label Content="국가" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="10,104,0,38" />
+                    <Label Content="감독" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="10,142,0,0" />
+                    <Label Content="관람등급" HorizontalAlignment="Left" Width="61" Foreground="White" Margin="154,104,0,38" />
+                    <Label Content="장르" HorizontalAlignment="Left" Width="42" Foreground="White" Margin="154,59,0,89" />
                     <TextBox x:Name="runningTimeTxt" HorizontalAlignment="Left" Height="28" Margin="75,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
                     <TextBox x:Name="directorTxt" HorizontalAlignment="Left" Height="30" Margin="75,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold"/>
                     <TextBox x:Name="nationTxt" HorizontalAlignment="Left" Height="30" Margin="75,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold"/>
@@ -88,74 +143,35 @@
         </ScrollViewer>
 
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" >
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" Margin="0,538,0,0" Grid.RowSpan="2" >
 
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="1" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                <Grid Grid.Column="1" Margin="20, 0, 20, 10">
+                    <Button x:Name="rePoster1" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
                 </Grid>
-                <Grid Grid.Column="2" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                <Grid Grid.Column="2" Margin="20, 0, 20, 10">
+                    <Button x:Name="rePoster2" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
                 </Grid>
-                <Grid Grid.Column="3" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                <Grid Grid.Column="3" Margin="20, 0, 20, 10">
+                    <Button x:Name="rePoster3" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
                 </Grid>
-                <Grid Grid.Column="4" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                <Grid Grid.Column="4" Margin="20, 0, 20, 10">
+                    <Button x:Name="rePoster4" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
                 </Grid>
-                <Grid Grid.Column="5" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="6" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="7" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="8" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="9" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="10" Margin="10">
-                    <Button Content="Button" Height="121" VerticalAlignment="Center"/>
+                <Grid Grid.Column="5" Margin="20, 0, 20, 10">
+                    <Button x:Name="rePoster5" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
                 </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>
-    <!-- <Grid HorizontalAlignment="Left" Height="183" Margin="67,71,0,0" VerticalAlignment="Top" Width="161">
-        <Button Content="close" HorizontalAlignment="Left" Height="33" Margin="-56,-63,0,0" VerticalAlignment="Top" Width="69" Click="Button_Click_1"/>
-        <Image x:Name="mvImg" HorizontalAlignment="Left" Height="214" Margin="0,10,-12,-41" VerticalAlignment="Top" Width="173" />
-        <Label x:Name="mvName" HorizontalAlignment="Left" Height="53" Margin="20,239,0,-109" VerticalAlignment="Top" Width="123" IsEnabled="False" Foreground="White" FontSize="20" FontFamily="GyeonggiTitle Light" FontWeight="Bold"/>
-        <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="100" Margin="156,-45,-97,0" VerticalAlignment="Top" Width="100" Visibility="Hidden" LoadCompleted="webBrowser_LoadCompleted"/>
-        <TextBox x:Name="txtMovie" HorizontalAlignment="Left" Height="315" Margin="281,-34,-576,-124" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="454"/>
-        <Button Content="Button" Height="121" Margin="-10,408,63,-346" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="474,408,-421,-346" VerticalAlignment="Top" Width="108"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="148,408,-95,-346" VerticalAlignment="Top" Width="108"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="316,408,-263,-346" VerticalAlignment="Top" Width="108"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="121" Margin="627,408,-574,-346" VerticalAlignment="Top" Width="108"/>
-        <Label Content="전문가 평점" HorizontalAlignment="Left" Height="31" Margin="-10,308,0,-156" VerticalAlignment="Top" Width="80" Foreground="White"/>
-        <Label Content="관람객 평점" HorizontalAlignment="Left" Height="31" Margin="75,308,-12,-156" VerticalAlignment="Top" Width="98" Foreground="White"/>
-        <TextBox x:Name="proRate" HorizontalAlignment="Left" Height="25" Margin="0,339,0,-181" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="41" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White"/>
-        <TextBox x:Name="audRate" HorizontalAlignment="Left" Height="25" Margin="94,339,0,-181" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}"/>
-
-    </Grid>-->
-
-
-
 </Window>

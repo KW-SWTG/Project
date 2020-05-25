@@ -255,7 +255,9 @@ namespace PROJECT
 
             int findIndex = movieInfos.FindIndex(r => r.MovieName.Equals(title));
             if (findIndex < 0)
-                MessageBox.Show("url을 찾을 수 없습니다");
+            {
+                //MessageBox.Show("url을 찾을 수 없습니다");
+            }
             else
                 posterUrl = movieInfos[findIndex].moviePoster;
 

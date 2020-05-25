@@ -94,6 +94,33 @@ namespace PROJECT
             nationTxt.Text = printList(db.nation);
         }
 
+        private void printRecommendMovies()
+        {
+            List<ImageBrush> brushes = new List<ImageBrush>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                string posterUrl = JsonLib.findPosterUrl(db.recommendMovies[i], movieInfos);
+                if (posterUrl.Equals(""))
+                {
+                    brushes.Add(null);
+                    continue;
+                }
+
+                BitmapImage bitmapImg = new BitmapImage(new Uri(posterUrl, UriKind.RelativeOrAbsolute));
+                ImageBrush brush = new ImageBrush();
+
+                brush.ImageSource = bitmapImg;
+                brushes.Add(brush);
+            }
+
+            rePoster1.Background = brushes[0];
+            rePoster2.Background = brushes[1];
+            rePoster3.Background = brushes[2];
+            rePoster4.Background = brushes[3];
+            rePoster5.Background = brushes[4];
+        }
+
         private void webBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             if (WebLib.UpdateMovieDB(webBrowser.Document as mshtml.HTMLDocument, db))
@@ -102,6 +129,7 @@ namespace PROJECT
                 mvImg.Source = new BitmapImage(new Uri(db.posterUrl));
 
                 printMovie();
+                printRecommendMovies();
             }
         }
     }
