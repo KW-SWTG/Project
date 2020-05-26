@@ -73,8 +73,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
 
         <!--// Head //-->
@@ -84,7 +84,7 @@
 
         <!--// Body //-->
 
-        <Grid Grid.Row="1" Margin="0,0,0,27">
+        <Grid Grid.Row="1">
         </Grid>
         <!--// Footer //-->
 
@@ -92,7 +92,7 @@
 
         <Button Content="close" Grid.Row="0" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="69" Click="Button_Click_1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontFamily="Malgun Gothic" FontWeight="Bold" FontSize="15"/>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,67">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" >
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -143,7 +143,7 @@
         </ScrollViewer>
 
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" Margin="0,538,0,0" Grid.RowSpan="2" >
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" >
 
             <Grid>
 

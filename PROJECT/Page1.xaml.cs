@@ -41,6 +41,7 @@ namespace PROJECT
             btnMv1.Content = list[0];
             btnMv2.Content = list[1];
             btnMv3.Content = list[2];
+       
         }
 
         private void btnMv_Click(object sender, RoutedEventArgs e)
@@ -58,6 +59,7 @@ namespace PROJECT
                     title = btnMv2.Content.ToString();
                 else if (btnOption == btnMv3)
                     title = btnMv3.Content.ToString();
+
 
                 // new Window and send extraData to Window1.xaml
                 Window1 w1 = new Window1(title);

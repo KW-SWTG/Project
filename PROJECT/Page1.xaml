@@ -71,21 +71,64 @@
     </Page.Resources>
 
 
-    <Grid Background="Black">
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="553" VerticalAlignment="Top" Width="5" Background="#FFCBB594" Margin="125,47,0,0"/>
-        <Button Content="액션" HorizontalAlignment="Left" Height="40" Margin="0,131,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button Content="드라마" HorizontalAlignment="Left" Height="40" Margin="0,171,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button Content="SF" HorizontalAlignment="Left" Height="40" Margin="0,211,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button Content="공포" HorizontalAlignment="Left" Height="40" Margin="0,251,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button Content="코미디" HorizontalAlignment="Left" Height="40" Margin="0,290,0,0" VerticalAlignment="Top" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontFamily="HYGothic-Extra" Style="{DynamicResource ButtonStyle2}" Foreground="#FFFFE7C5"/>
-        <Button x:Name="btnMv1" Content="" HorizontalAlignment="Left" Height="151" Margin="211,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
+    <Grid>
+        <!--Divide Section-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--// HEAD //-->
+        <Grid Grid.Row="0">
+            <Button x:Name="btnKill" Content="Exit" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="79" Height="34" FontSize="15" Click="btnKill_Click" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
+            <Button x:Name="btnRestart" Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="10,10,0,0" Height="34" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold" Click="btnRestart_Click"/>
+        </Grid>
+        <!--//Body//-->
+        <Grid Grid.Row="1"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="300"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnMv1" Grid.Column="1" Grid.Row="1" Content="" HorizontalAlignment="Center" Height="210" VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv2" Grid.Column="2" Grid.Row="1" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv3" Grid.Column="3" Grid.Row="1" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv4" Grid.Column="1" Grid.Row="2" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv5" Grid.Column="2" Grid.Row="2" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv6" Grid.Column="3" Grid.Row="2" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv7" Grid.Column="1" Grid.Row="3" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv8" Grid.Column="2" Grid.Row="3" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv9" Grid.Column="3" Grid.Row="3" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+                <Button x:Name="btnMv10" Grid.Column="1" Grid.Row="4" Content="" HorizontalAlignment="Center" Height="210"  VerticalAlignment="Center" Width="170" Click="btnMv_Click"/>
+
+            </Grid>
+        </ScrollViewer>
+
+
+
+    </Grid>
+
+    <!--<Grid Background="Black">
+        <Button x:Name="btnMv1" Content="" HorizontalAlignment="Left" Height="151" Margin="163,99,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
         <Button x:Name="btnMv2" Content="" HorizontalAlignment="Left" Height="151" Margin="402,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
         <Button x:Name="btnMv3" Content="" HorizontalAlignment="Left" Height="151" Margin="598,47,0,0" VerticalAlignment="Top" Width="137" Click="btnMv_Click"/>
         <Button Content="Button4" HorizontalAlignment="Left" Height="151" Margin="211,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button Content="Button5" HorizontalAlignment="Left" Height="151" Margin="402,250,0,0" VerticalAlignment="Top" Width="137"/>
         <Button Content="Button6" HorizontalAlignment="Left" Height="151" Margin="598,250,0,0" VerticalAlignment="Top" Width="137"/>
-        <Button x:Name="btnKill" Content="Exit" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="79" Height="34" FontSize="15" Click="btnKill_Click" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
-        <Button x:Name="btnRestart" Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="10,10,0,0" Height="34" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold" Click="btnRestart_Click"/>
+        
 
-    </Grid>
+    </Grid>-->
 </Page>
