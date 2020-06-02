@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
+
 namespace PROJECT
 {
     /// <summary>
@@ -24,6 +25,8 @@ namespace PROJECT
     public partial class MainWindow : Window
     {
         List<MovieInfo> movieInfos;
+        List<MovieInfo> rand10mov = new List<MovieInfo>();
+        List<MovieInfo> SelectedMovlst = new List<MovieInfo>();
         private int cnt = 0;
 
         public MainWindow()
@@ -43,20 +46,28 @@ namespace PROJECT
 
         private void posterOption_Click(object sender, RoutedEventArgs e)
         {
-            ClickedChange();
+            
             var posterOption = sender as Button;
 
             if(null != posterOption)
             {
                 cnt++;
-
-                if(cnt == 5)
+                
+                int btnnum =  Convert.ToInt32(posterOption.Name.ToString().Last().ToString());
+                if (btnnum == 0)
+                    btnnum = 10;
+                SelectedMovlst.Add(rand10mov[btnnum - 1]);
+                ClickedChange();
+                
+                if (cnt == 30)
                 {
-                    // 취향분석 알고리즘을 통해 얻은 추천영화 리스트 
-                    string[] title = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };      // 임시
+                    
+                    List<string> Genre = RcmMovlst(SelectedMovlst);
+                    // 취향분석 알고리즘을 통해 얻은 추천영화 리스트
 
                     List<string> list = new List<string>();
-                    list.AddRange(title);
+                    string[] Movielst = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };
+                    list.AddRange(Movielst);
 
                     Page1 p1 = new Page1(list);
                     this.Content = p1;
@@ -66,7 +77,8 @@ namespace PROJECT
         private void ClickedChange()
         {
             var random = new Random();
-            List<MovieInfo> rand10mov = new List<MovieInfo>();
+            
+            rand10mov.Clear();
             List<ImageBrush> brushes = new List<ImageBrush>();
 
             for (int k = 0; k < 10; k++)
@@ -94,6 +106,131 @@ namespace PROJECT
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private List<string> RcmMovlst(List<MovieInfo> selectedlst)
+        {
+            List<string> Genrelst = new List<string>();
+            Dictionary<string, double> movieDic = new Dictionary<string, double>();
+            for(int i = 0; i < selectedlst.Count; i++)
+            {
+                int t = selectedlst[i].Genre.Count();
+                for(int k = 0; k < t; k++)
+                {
+                    double grScore = 1 / (double)t;
+                    if (t == 1 && selectedlst[i].Genre[k] == "드라마")
+                    {
+                        if (Genrelst.Contains(selectedlst[i].Genre[k]) == false)
+                        {
+                            Genrelst.Add(selectedlst[i].Genre[k]);
+                            movieDic.Add(selectedlst[i].Genre[k], 0);
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                        else
+                        {
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                    }
+                    else if (selectedlst[i].Genre.Contains("드라마") == true)
+                    {
+                        grScore = 1 / (double)(t - 1);
+                        if (selectedlst[i].Genre[k] == "드라마")
+                            continue;
+                        if (Genrelst.Contains(selectedlst[i].Genre[k]) == false)
+                        {
+                            Genrelst.Add(selectedlst[i].Genre[k]);
+                            movieDic.Add(selectedlst[i].Genre[k], 0);
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                        else
+                        {
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                    }
+                    else 
+                    {
+                        if (Genrelst.Contains(selectedlst[i].Genre[k]) == false)
+                        {
+                            Genrelst.Add(selectedlst[i].Genre[k]);
+                            movieDic.Add(selectedlst[i].Genre[k], 0);
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                        else
+                        {
+                            movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
+                        }
+                    }
+                }
+            }
+            //선택영화당 장르별 가중치 계산하여 구하고 dictionary에 저장
+
+            var sortedmovieDic = movieDic.OrderByDescending(num => num.Value);
+            
+            double averageGenreSC = 0;
+            List<double> gsArr = new List<double>();
+            foreach (KeyValuePair<string, double> tt in sortedmovieDic)
+            {
+                Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
+                averageGenreSC += tt.Value;
+                gsArr.Add(tt.Value);
+            }
+
+            Console.WriteLine(averageGenreSC / sortedmovieDic.Count());
+            Console.WriteLine(StdDev(gsArr));
+
+
+            //장르별로 표준편차 계산
+
+            int casenum = 0;
+            List<string> Fgenrelst = new List<string>();
+
+            if (StdDev(gsArr) + averageGenreSC / sortedmovieDic.Count() < sortedmovieDic.ElementAt(0).Value)
+                casenum = 1;
+            else
+                casenum = 2;
+
+            switch (casenum)
+            {
+                case 1:
+                    foreach (KeyValuePair<string, double> tt in sortedmovieDic)
+                    {
+                        if (tt.Value > StdDev(gsArr) + averageGenreSC / sortedmovieDic.Count())
+                            Fgenrelst.Add(tt.Key);
+                    }
+                    break;
+                case 2:
+                    foreach (KeyValuePair<string, double> tt in sortedmovieDic)
+                    {
+                        if (tt.Value > averageGenreSC / sortedmovieDic.Count()-StdDev(gsArr))
+                            Fgenrelst.Add(tt.Key);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Wrong Genre Search");
+                    break;
+            }
+            //표준편차구간의 최상의 장르의 유무에 따라 추천 장르 저장
+            foreach (var item in Fgenrelst)
+            {
+                Console.WriteLine(item);
+            }
+            return Fgenrelst;
+        }
+
+        private double StdDev(IEnumerable<double> values)
+        {
+            double result = 0;
+            try
+            {
+                if (values.Count() > 0)
+                {
+                    double mean = values.Average();
+                    double sum = values.Sum(d => Math.Pow(d - mean, 2));
+                    result = Math.Sqrt((sum) / (values.Count() - 1));
+                }
+            }
+            catch { }
+            return result;
         }
     }
 }

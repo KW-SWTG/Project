@@ -33,6 +33,13 @@ namespace PROJECT
             get { return moviePoster; }
             set { if (value.Length > 0) moviePoster = value; }
         }
+
+        private string[] genre;
+        public string[] Genre
+        {
+            get { return genre;}
+            set { if (value.Length > 0) genre = value; }
+        }
     }
 
     class MovieDB
@@ -214,6 +221,7 @@ namespace PROJECT
     {
         public static void InitMovieInfo(List<MovieInfo> movieInfos)
         {
+            
             try
             {
                 String str = System.IO.File.ReadAllText("TopMovieli.json");
@@ -226,7 +234,7 @@ namespace PROJECT
                     tmp.MovieName = jMovie[i]["MovieName"].ToString();
                     tmp.Url = jMovie[i]["Url"].ToString();
                     tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
-
+                    tmp.Genre = jMovie[i]["genre"].ToObject<string[]>();
                     movieInfos.Add(tmp);
                 }
             }

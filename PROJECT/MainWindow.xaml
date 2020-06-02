@@ -275,10 +275,10 @@
 
 
                 <Grid Grid.Column="1" Margin="10">
-                    <Button x:Name="poster2"  HorizontalAlignment="Center" Height="267"  VerticalAlignment="Center" Width="165" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster1"  HorizontalAlignment="Center" Height="267"  VerticalAlignment="Center" Width="165" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="2" Margin="10">
-                    <Button x:Name="poster1" HorizontalAlignment="Left"  Height="267"  VerticalAlignment="Center" Width="165" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster2" HorizontalAlignment="Left"  Height="267"  VerticalAlignment="Center" Width="165" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="3" Margin="10">
                     <Button x:Name="poster3" HorizontalAlignment="Left" Height="267"  VerticalAlignment="Center" Width="165" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
