@@ -52,8 +52,8 @@
                                 <Setter Property="TextElement.Foreground" TargetName="border" Value="Black"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#FF6F8024"/>
+                                <Setter Property="TextElement.Foreground" TargetName="border" Value="Black"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -156,19 +156,22 @@
     <Grid>
         <!--Divide Section-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--// HEAD //-->
         <Grid Grid.Row="0">
-            <Button x:Name="btnKill" Content="Exit" HorizontalAlignment="Left" Margin="88,10,0,0" VerticalAlignment="Top" Width="79" Height="34" FontSize="15" Click="btnKill_Click" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
-            <Button x:Name="btnRestart" Content="Restart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Margin="10,10,0,0" Height="34" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold" Click="btnRestart_Click"/>
+            <Button x:Name="btnKill" Content="Exit" Style="{DynamicResource ButtonStyle2}" HorizontalAlignment="Left" Margin="69,0,0,0" VerticalAlignment="Top" Width="69" Height="34" FontSize="15" Click="btnKill_Click" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold"/>
+            <Button x:Name="btnRestart" Content="Restart" Style="{DynamicResource ButtonStyle2}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="69" Height="33" FontSize="15" FontFamily="Malgun Gothic" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFDDF9BA" FontWeight="Bold" Click="btnRestart_Click"/>
         </Grid>
         <!--//Body//-->
-        <Grid Grid.Row="1"/>
+        <Grid Grid.Row="1" Background="#FFA6B469">
+            <TextBlock Text="추천 영화 목록" Width="311" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" FontFamily="HYHeadLine" Foreground="Black" TextAlignment="Center"/>
+        </Grid>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
