@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJECT"
+        xmlns:controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
         mc:Ignorable="d"
         Title="Window1" Height="800" Width="900" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
 
@@ -196,7 +197,8 @@
 
                 </Grid>
                 <Grid Grid.Column="2" Grid.Row="0" Margin="10">
-                    <TextBox x:Name="txtMovie" HorizontalAlignment="Center" Height="355" TextWrapping="Wrap" Text="YOUTUBE " VerticalAlignment="Center" Width="482" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+                    <controls:WebView Name="wvYoutubeReview"></controls:WebView>
+                    <TextBox x:Name="txtMovie" HorizontalAlignment="Center" Height="62" TextWrapping="Wrap" Text="YOUTUBE " VerticalAlignment="Center" Width="106" FontSize="20" FontWeight="Bold" TextAlignment="Center" Margin="189,423,220,-145" RenderTransformOrigin="1.421,1.426"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1">

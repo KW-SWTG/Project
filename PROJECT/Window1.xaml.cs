@@ -22,6 +22,7 @@ using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 
+using Microsoft.Toolkit.Wpf.UI.Controls;
 
 namespace PROJECT
 {
@@ -144,17 +145,30 @@ namespace PROJECT
 
 
             var searchListResponse = searchListRequest.Execute();
-            
-            foreach (var searchResult in searchListResponse.Items)
+
+            //var searchResultFirstRivew = searchListResponse.Items[0];
+            //var searchResultSecondReview = searchListResponse.Items[1];
+
+            for ( int i = 0; i < 1; i++)
             {
-                switch (searchResult.Id.Kind)
-                {
-                    case "youtube#video":
-                        txtMovie.AppendText(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n", searchResult.Snippet.Title, searchResult.Id.VideoId));
-                        //text.Add(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n thumbnail url: {2}", searchResult.Snippet.Title, searchResult.Id.VideoId, searchResult.Snippet.Thumbnails.Medium.Url));
-                        break;
-                }
+                var searchResult = searchListResponse.Items[i];
+                string review
+                    = "<html><body> " +
+                    "<iframe width=\"400\" height=\"300\" src=\"https://www.youtube.com/embed/" + searchResult.Id.VideoId + "\" frameborder=\"0\" " +
+                    "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"ture\"></ifame>" +
+                    "</body> </html>";
+                wvYoutubeReview.NavigateToString(review);
             }
+            //foreach (var searchResult in searchListResponse.Items)
+            //{
+            //    switch (searchResult.Id.Kind)
+            //    {
+            //        case "youtube#video":
+            //            txtMovie.AppendText(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n", searchResult.Snippet.Title, searchResult.Id.VideoId));
+            //            //text.Add(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n thumbnail url: {2}", searchResult.Snippet.Title, searchResult.Id.VideoId, searchResult.Snippet.Thumbnails.Medium.Url));
+            //            break;
+            //    }
+            //}
 
         }
 
