@@ -154,7 +154,7 @@ namespace PROJECT
                 var searchResult = searchListResponse.Items[i];
                 string review
                     = "<html><body> " +
-                    "<iframe width=\"400\" height=\"300\" src=\"https://www.youtube.com/embed/" + searchResult.Id.VideoId + "\" frameborder=\"0\" " +
+                    "<iframe width=\"505\" height=\"320\" src=\"https://www.youtube.com/embed/" + searchResult.Id.VideoId + "\" frameborder=\"0\" " +
                     "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"ture\"></ifame>" +
                     "</body> </html>";
                 wvYoutubeReview.NavigateToString(review);
