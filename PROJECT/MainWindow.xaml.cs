@@ -24,16 +24,18 @@ namespace PROJECT
     
     public partial class MainWindow : Window
     {
-        List<MovieInfo> movieInfos;
+        List<MovieInfo> movieInfos = new List<MovieInfo>();
         List<MovieInfo> rand10mov = new List<MovieInfo>();
+        List<MovieInfo> AlreadyShowlst = new List<MovieInfo>();
         List<MovieInfo> SelectedMovlst = new List<MovieInfo>();
+        List<MovieInfo> RecommandMovieInfos = new List<MovieInfo>();
         private int cnt = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
-
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList2"];
+            RecommandMovieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
             ClickedChange();
 
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
@@ -48,8 +50,9 @@ namespace PROJECT
         {
             
             var posterOption = sender as Button;
+            ClickedChange();
 
-            if(null != posterOption)
+            if (null != posterOption && posterOption.Name !="Move")
             {
                 cnt++;
                 
@@ -57,14 +60,14 @@ namespace PROJECT
                 if (btnnum == 0)
                     btnnum = 10;
                 SelectedMovlst.Add(rand10mov[btnnum - 1]);
-                ClickedChange();
-                
-                if (cnt == 30)
+                if (cnt == 10)
                 {
                     
                     List<string> Genre = RcmMovlst(SelectedMovlst);
+                    List<string> Actor = ActorsCounts(SelectedMovlst);
+                    List<string> Country = CountryCounts(SelectedMovlst);
                     // 취향분석 알고리즘을 통해 얻은 추천영화 리스트
-
+                    List<string> Rcmlst = RecommandMovies(Genre, Actor, Country);
                     List<string> list = new List<string>();
                     string[] Movielst = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };
                     list.AddRange(Movielst);
@@ -77,14 +80,24 @@ namespace PROJECT
         private void ClickedChange()
         {
             var random = new Random();
-            
+                foreach (var Mov in rand10mov)
+                {
+                    AlreadyShowlst.Add(Mov);
+                }
             rand10mov.Clear();
             List<ImageBrush> brushes = new List<ImageBrush>();
 
             for (int k = 0; k < 10; k++)
             {
-                rand10mov.Add(movieInfos[random.Next(movieInfos.Count)]);
-                BitmapImage i = new BitmapImage(new Uri(rand10mov[k].MoviePoster, UriKind.RelativeOrAbsolute));
+                
+                var tempmov = movieInfos[random.Next(movieInfos.Count)];
+                while (tempmov.MoviePoster == "None" && AlreadyShowlst.Contains(tempmov)==false)
+                {
+                    tempmov = movieInfos[random.Next(movieInfos.Count)];
+                }
+
+                BitmapImage i = new BitmapImage(new Uri(tempmov.MoviePoster, UriKind.RelativeOrAbsolute));
+                rand10mov.Add(tempmov);
                 ImageBrush brush = new ImageBrush();
 
                 brush.ImageSource = i;
@@ -217,6 +230,96 @@ namespace PROJECT
             return Fgenrelst;
         }
 
+        private List<string> ActorsCounts(List<MovieInfo> selectedlst)
+        {
+            List<string> Actorlst = new List<string>();
+            Dictionary<string, int> movieDic = new Dictionary<string, int>();
+            for(int i =0;i<selectedlst.Count;i++)
+            {
+                int t = selectedlst[i].Actor.Count();
+                for (int k = 0; k < t; k++)
+                {
+                    if (Actorlst.Contains(selectedlst[i].Actor[k]) == false)
+                    {
+                        Actorlst.Add(selectedlst[i].Actor[k]);
+                        movieDic.Add(selectedlst[i].Actor[k], 0);
+                        movieDic[selectedlst[i].Actor[k]] += 1;
+                    }
+                    else
+                    {
+                        movieDic[selectedlst[i].Actor[k]] += 1;
+                    }
+                }
+            }
+
+            var sortedmovieDic = movieDic.OrderByDescending(num => num.Value);
+            List<string> RActorlst = new List<string>();
+            foreach (KeyValuePair<string,int> tt in sortedmovieDic)
+            {
+                Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
+                if (tt.Value > 4)
+                    RActorlst.Add(tt.Key);
+            }
+            if (RActorlst.Count() < 1)
+                RActorlst.Add("None");
+
+            return RActorlst;
+        }
+
+        private List<string> CountryCounts(List<MovieInfo> selectedlst)
+        {
+            List<string> Countrylst = new List<string>();
+            Dictionary<string, int> movieDic = new Dictionary<string, int>();
+            for (int i = 0; i < selectedlst.Count; i++)
+            {
+                int t = selectedlst[i].Country.Count();
+                for (int k = 0; k < t; k++)
+                {
+                    if (Countrylst.Contains(selectedlst[i].Country[k]) == false)
+                    {
+                        Countrylst.Add(selectedlst[i].Country[k]);
+                        movieDic.Add(selectedlst[i].Country[k], 0);
+                        movieDic[selectedlst[i].Country[k]] += 1;
+                    }
+                    else
+                    {
+                        movieDic[selectedlst[i].Country[k]] += 1;
+                    }
+                }
+            }
+
+            var sortedmovieDic = movieDic.OrderByDescending(num => num.Value);
+            List<string> RCountrylst = new List<string>();
+            foreach (KeyValuePair<string, int> tt in sortedmovieDic)
+            {
+                Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
+                if (tt.Value > 10)
+                    RCountrylst.Add(tt.Key);
+            }
+            if (RCountrylst.Count() < 1)
+                RCountrylst.Add("None");
+            return RCountrylst;
+        }
+
+
+        private List<string> RecommandMovies(List<string> Genrelst, List<string> Actorlst , List<string> Countrylst)
+        {
+            List<string> Recommandlst = new List<string>();
+            int GenreCounts = Genrelst.Count();
+            switch (GenreCounts)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                default:
+                    break;
+            }
+            return Recommandlst;
+        }
         private double StdDev(IEnumerable<double> values)
         {
             double result = 0;

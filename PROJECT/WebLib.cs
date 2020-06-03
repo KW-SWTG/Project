@@ -40,6 +40,20 @@ namespace PROJECT
             get { return genre;}
             set { if (value.Length > 0) genre = value; }
         }
+
+        private string[] actor;
+        public string[] Actor
+        {
+            get { return actor; }
+            set { if (value.Length > 0) actor = value; }
+        }
+
+        private string[] country;
+        public string[] Country
+        {
+            get { return country; }
+            set { if (value.Length > 0) country = value; }
+        }
     }
 
     class MovieDB
@@ -235,6 +249,8 @@ namespace PROJECT
                     tmp.Url = jMovie[i]["Url"].ToString();
                     tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
                     tmp.Genre = jMovie[i]["genre"].ToObject<string[]>();
+                    tmp.Actor = jMovie[i]["Actor"].ToObject<string[]>();
+                    tmp.Country = jMovie[i]["Country"].ToObject<string[]>();
                     movieInfos.Add(tmp);
                 }
             }
@@ -242,6 +258,32 @@ namespace PROJECT
             {
                 MessageBox.Show(e.Message);
             } 
+        }
+        public static void SecondMovieInfo(List<MovieInfo> movieInfos)
+        {
+
+            try
+            {
+                String str = System.IO.File.ReadAllText("Movieli.json");
+                //기존 json list 에서 imageUrl키값을 추가하여 선택단계에서 사용함
+                JArray jMovie = JArray.Parse(str);
+
+                for (int i = 0; i < jMovie.Count; i++)
+                {
+                    MovieInfo tmp = new MovieInfo();
+                    tmp.MovieName = jMovie[i]["MovieName"].ToString();
+                    tmp.Url = jMovie[i]["Url"].ToString();
+                    tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
+                    tmp.Genre = jMovie[i]["genre"].ToObject<string[]>();
+                    tmp.Actor = jMovie[i]["Actor"].ToObject<string[]>();
+                    tmp.Country = jMovie[i]["Country"].ToObject<string[]>();
+                    movieInfos.Add(tmp);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public static string findMovieUrl(string title, List<MovieInfo> movieInfos)

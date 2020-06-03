@@ -16,9 +16,12 @@ namespace PROJECT
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             List<MovieInfo> movieInfos = new List<MovieInfo>();
-            JsonLib.InitMovieInfo(movieInfos);
-
+            JsonLib.SecondMovieInfo(movieInfos);
+            List<MovieInfo> FmovieInfos = new List<MovieInfo>();
+            JsonLib.InitMovieInfo(FmovieInfos);
             this.Properties["mvInfoList"] = movieInfos;
+            this.Properties["mvInfoList2"] = FmovieInfos;
+
         }
     }
 }
