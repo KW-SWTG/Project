@@ -204,7 +204,7 @@ namespace PROJECT
             if (index > -1)
             {
                 string name = db.recommendMovies[index];
-
+                wvYoutubeReview.Close();
                 this.Close();
                 Window1 newWindow = new Window1(name);
                 newWindow.Show();
