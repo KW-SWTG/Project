@@ -14,6 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Upload;
+using Google.Apis.Util.Store;
+using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
+
+
 namespace PROJECT
 {
     /// <summary>
@@ -121,7 +130,35 @@ namespace PROJECT
             rePoster5.Background = brushes[4];
         }
 
-        private void webBrowser_LoadCompleted(object sender, NavigationEventArgs e)
+        private void printReview()
+        {
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = "AIzaSyCC13XkXYGADud9Wy5G_od0YL9r0mkVWAc",
+                ApplicationName = this.GetType().ToString()
+            });
+
+            var searchListRequest = youtubeService.Search.List("snippet");
+            searchListRequest.Q = db.title + "리뷰"; // Replace with your search term.
+            searchListRequest.MaxResults = 2;
+
+
+            var searchListResponse = searchListRequest.Execute();
+            
+            foreach (var searchResult in searchListResponse.Items)
+            {
+                switch (searchResult.Id.Kind)
+                {
+                    case "youtube#video":
+                        txtMovie.AppendText(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n", searchResult.Snippet.Title, searchResult.Id.VideoId));
+                        //text.Add(String.Format("이름: {0} \r\n,url : https://www.youtube.com/watch?v={1}\r\n thumbnail url: {2}", searchResult.Snippet.Title, searchResult.Id.VideoId, searchResult.Snippet.Thumbnails.Medium.Url));
+                        break;
+                }
+            }
+
+        }
+
+            private void webBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             if (WebLib.UpdateMovieDB(webBrowser.Document as mshtml.HTMLDocument, db))
             {
@@ -130,6 +167,7 @@ namespace PROJECT
 
                 printMovie();
                 printRecommendMovies();
+                printReview();
             }
         }
     }

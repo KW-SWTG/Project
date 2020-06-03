@@ -196,7 +196,7 @@
 
                 </Grid>
                 <Grid Grid.Column="2" Grid.Row="0" Margin="10">
-                    <TextBox x:Name="txtMovie" HorizontalAlignment="Center" Height="355" TextWrapping="Wrap" Text="YOUTUBE " VerticalAlignment="Center" Width="482" FontSize="50" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBox x:Name="txtMovie" HorizontalAlignment="Center" Height="355" TextWrapping="Wrap" Text="YOUTUBE " VerticalAlignment="Center" Width="482" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1">
