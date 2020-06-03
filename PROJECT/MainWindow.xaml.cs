@@ -21,7 +21,7 @@ namespace PROJECT
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    
+
     public partial class MainWindow : Window
     {
         List<MovieInfo> movieInfos = new List<MovieInfo>();
@@ -48,50 +48,55 @@ namespace PROJECT
 
         private void posterOption_Click(object sender, RoutedEventArgs e)
         {
-            
-            var posterOption = sender as Button;
-            ClickedChange();
 
-            if (null != posterOption && posterOption.Name !="Move")
+            var posterOption = sender as Button;
+
+            if (null != posterOption && posterOption.Name != "Move")
             {
                 cnt++;
-                
-                int btnnum =  Convert.ToInt32(posterOption.Name.ToString().Last().ToString());
+
+                int btnnum = Convert.ToInt32(posterOption.Name.ToString().Last().ToString());
                 if (btnnum == 0)
                     btnnum = 10;
                 SelectedMovlst.Add(rand10mov[btnnum - 1]);
                 if (cnt == 10)
                 {
-                    
+
                     List<string> Genre = RcmMovlst(SelectedMovlst);
                     List<string> Actor = ActorsCounts(SelectedMovlst);
                     List<string> Country = CountryCounts(SelectedMovlst);
                     // 취향분석 알고리즘을 통해 얻은 추천영화 리스트
                     List<string> Rcmlst = RecommandMovies(Genre, Actor, Country);
+                    foreach (var item in Rcmlst)
+                    {
+                        Console.WriteLine(item);
+                    }
                     List<string> list = new List<string>();
                     string[] Movielst = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };
                     list.AddRange(Movielst);
 
-                    Page1 p1 = new Page1(list);
+                    Page1 p1 = new Page1(Rcmlst);
                     this.Content = p1;
                 }
             }
+            ClickedChange();
+
         }
         private void ClickedChange()
         {
             var random = new Random();
-                foreach (var Mov in rand10mov)
-                {
-                    AlreadyShowlst.Add(Mov);
-                }
+            foreach (var Mov in rand10mov)
+            {
+                AlreadyShowlst.Add(Mov);
+            }
             rand10mov.Clear();
             List<ImageBrush> brushes = new List<ImageBrush>();
 
             for (int k = 0; k < 10; k++)
             {
-                
+
                 var tempmov = movieInfos[random.Next(movieInfos.Count)];
-                while (tempmov.MoviePoster == "None" && AlreadyShowlst.Contains(tempmov)==false)
+                while (tempmov.MoviePoster == "None" && AlreadyShowlst.Contains(tempmov) == false)
                 {
                     tempmov = movieInfos[random.Next(movieInfos.Count)];
                 }
@@ -125,10 +130,10 @@ namespace PROJECT
         {
             List<string> Genrelst = new List<string>();
             Dictionary<string, double> movieDic = new Dictionary<string, double>();
-            for(int i = 0; i < selectedlst.Count; i++)
+            for (int i = 0; i < selectedlst.Count; i++)
             {
                 int t = selectedlst[i].Genre.Count();
-                for(int k = 0; k < t; k++)
+                for (int k = 0; k < t; k++)
                 {
                     double grScore = 1 / (double)t;
                     if (t == 1 && selectedlst[i].Genre[k] == "드라마")
@@ -160,7 +165,7 @@ namespace PROJECT
                             movieDic[selectedlst[i].Genre[k]] += Math.Round(grScore, 3);
                         }
                     }
-                    else 
+                    else
                     {
                         if (Genrelst.Contains(selectedlst[i].Genre[k]) == false)
                         {
@@ -178,7 +183,7 @@ namespace PROJECT
             //선택영화당 장르별 가중치 계산하여 구하고 dictionary에 저장
 
             var sortedmovieDic = movieDic.OrderByDescending(num => num.Value);
-            
+
             double averageGenreSC = 0;
             List<double> gsArr = new List<double>();
             foreach (KeyValuePair<string, double> tt in sortedmovieDic)
@@ -214,7 +219,7 @@ namespace PROJECT
                 case 2:
                     foreach (KeyValuePair<string, double> tt in sortedmovieDic)
                     {
-                        if (tt.Value > averageGenreSC / sortedmovieDic.Count()-StdDev(gsArr))
+                        if (tt.Value > averageGenreSC / sortedmovieDic.Count() - StdDev(gsArr))
                             Fgenrelst.Add(tt.Key);
                     }
                     break;
@@ -234,7 +239,7 @@ namespace PROJECT
         {
             List<string> Actorlst = new List<string>();
             Dictionary<string, int> movieDic = new Dictionary<string, int>();
-            for(int i =0;i<selectedlst.Count;i++)
+            for (int i = 0; i < selectedlst.Count; i++)
             {
                 int t = selectedlst[i].Actor.Count();
                 for (int k = 0; k < t; k++)
@@ -254,7 +259,7 @@ namespace PROJECT
 
             var sortedmovieDic = movieDic.OrderByDescending(num => num.Value);
             List<string> RActorlst = new List<string>();
-            foreach (KeyValuePair<string,int> tt in sortedmovieDic)
+            foreach (KeyValuePair<string, int> tt in sortedmovieDic)
             {
                 Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
                 if (tt.Value > 4)
@@ -302,19 +307,77 @@ namespace PROJECT
         }
 
 
-        private List<string> RecommandMovies(List<string> Genrelst, List<string> Actorlst , List<string> Countrylst)
+        private List<string> RecommandMovies(List<string> Genrelst, List<string> Actorlst, List<string> Countrylst)
         {
             List<string> Recommandlst = new List<string>();
             int GenreCounts = Genrelst.Count();
+            var tempmov = new MovieInfo();
+            var random = new Random();
+            int count = 0;
             switch (GenreCounts)
             {
                 case 1:
+                    while (count != 10)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
                     break;
                 case 2:
+                    while (count != 4)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
+                    while (count != 7)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
+                    while (count != 10)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
                     break;
                 case 3:
+                    while (count != 10)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
                     break;
                 case 4:
+                    while (count != 10)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                            count += 1;
+                        }
+                    }
+                    break;
                 default:
                     break;
             }

@@ -37,7 +37,7 @@ namespace PROJECT
         private string[] genre;
         public string[] Genre
         {
-            get { return genre;}
+            get { return genre; }
             set { if (value.Length > 0) genre = value; }
         }
 
@@ -75,7 +75,7 @@ namespace PROJECT
 
         public bool Is()
         {
-            if(title != "" && url != "")
+            if (title != "" && url != "")
             {
                 return true;
             }
@@ -83,20 +83,20 @@ namespace PROJECT
         }
     }
 
-    class  WebLib
+    class WebLib
     {
         static public bool findPoster(mshtml.HTMLDocument doc, MovieDB db)
         {
             if (db == null || doc == null)
                 return false;
-            
+
             mshtml.IHTMLElementCollection item = doc.getElementsByTagName("img");
             string posterUrl = "";
 
             int cnt = 0;
-            foreach(mshtml.IHTMLElement elem in item)
+            foreach (mshtml.IHTMLElement elem in item)
             {
-                if(elem.getAttribute("alt") == db.title && cnt == 0)
+                if (elem.getAttribute("alt") == db.title && cnt == 0)
                 {
                     posterUrl = elem.getAttribute("src");
                     break;
@@ -116,10 +116,10 @@ namespace PROJECT
             mshtml.IHTMLElementCollection item = doc.getElementsByTagName("div");
 
             int lineIndex = 0;
-            foreach(mshtml.IHTMLElement elem in item)
+            foreach (mshtml.IHTMLElement elem in item)
             {
                 var score = elem.getAttribute("className");
-                if(score == "star_score" || score == "star_score ")
+                if (score == "star_score" || score == "star_score ")
                 {
                     string text = elem.innerText;
                     text = text.Replace("\r\n", "");
@@ -146,9 +146,9 @@ namespace PROJECT
         {
             mshtml.IHTMLElementCollection item = doc.getElementsByTagName("ul");
 
-            foreach(mshtml.IHTMLElement elem in item)
+            foreach (mshtml.IHTMLElement elem in item)
             {
-                if(elem.getAttribute("className") == "thumb_link_mv")
+                if (elem.getAttribute("className") == "thumb_link_mv")
                 {
                     string text = elem.innerText;
                     text = text.Replace("\r\n", ",");
@@ -171,11 +171,11 @@ namespace PROJECT
             mshtml.IHTMLElementCollection item = doc.getElementsByTagName("dd");
 
             int lineIndex = 0;
-            foreach(mshtml.IHTMLElement elem in item)
+            foreach (mshtml.IHTMLElement elem in item)
             {
                 string text = elem.innerText;
 
-                if(lineIndex == 0)
+                if (lineIndex == 0)
                 {
                     // 감독
                     text = text.Replace(", ", ",");
@@ -183,7 +183,7 @@ namespace PROJECT
                     string[] director = text.Split(',');
                     db.director.AddRange(director);
                 }
-                else if(lineIndex == 1)
+                else if (lineIndex == 1)
                 {
                     // 배우
                     text = text.Replace(", ", ",");
@@ -191,7 +191,7 @@ namespace PROJECT
                     string[] actor = text.Split(',');
                     db.actor.AddRange(actor);
                 }
-                else if(lineIndex == 2)
+                else if (lineIndex == 2)
                 {
                     // 장르, 국가, 상영시간, 개봉일
                     text = text.Replace(", ", ",");
@@ -209,7 +209,7 @@ namespace PROJECT
                     db.runningTime = tmp[2];
                     db.releaseDate = tmp[3];
                 }
-                else if(lineIndex == 5)
+                else if (lineIndex == 5)
                 {
                     // 관람 등급
                     text = text.Replace("\r\n", "");
@@ -235,14 +235,14 @@ namespace PROJECT
     {
         public static void InitMovieInfo(List<MovieInfo> movieInfos)
         {
-            
+
             try
             {
-                String str = System.IO.File.ReadAllText("TopMovieli.json");
+                String str = System.IO.File.ReadAllText("Movieli.json");
                 //기존 json list 에서 imageUrl키값을 추가하여 선택단계에서 사용함
                 JArray jMovie = JArray.Parse(str);
 
-                for(int i = 0; i < jMovie.Count; i++)
+                for (int i = 0; i < jMovie.Count; i++)
                 {
                     MovieInfo tmp = new MovieInfo();
                     tmp.MovieName = jMovie[i]["MovieName"].ToString();
@@ -254,17 +254,17 @@ namespace PROJECT
                     movieInfos.Add(tmp);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-            } 
+            }
         }
         public static void SecondMovieInfo(List<MovieInfo> movieInfos)
         {
 
             try
             {
-                String str = System.IO.File.ReadAllText("Movieli.json");
+                String str = System.IO.File.ReadAllText("TopMovieli.json");
                 //기존 json list 에서 imageUrl키값을 추가하여 선택단계에서 사용함
                 JArray jMovie = JArray.Parse(str);
 
@@ -291,7 +291,7 @@ namespace PROJECT
             string url = "";
 
             int findIndex = movieInfos.FindIndex(r => r.MovieName.Equals(title));
-            if(findIndex < 0)
+            if (findIndex < 0)
                 MessageBox.Show("url을 찾을 수 없습니다");
             else
                 url = movieInfos[findIndex].Url;

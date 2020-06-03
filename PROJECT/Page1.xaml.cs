@@ -41,14 +41,21 @@ namespace PROJECT
             btnMv1.Content = list[0];
             btnMv2.Content = list[1];
             btnMv3.Content = list[2];
-       
+            btnMv4.Content = list[3];
+            btnMv5.Content = list[4];
+            btnMv6.Content = list[5];
+            btnMv7.Content = list[6];
+            btnMv8.Content = list[7];
+            btnMv9.Content = list[8];
+            btnMv10.Content = list[9];
+
         }
 
         private void btnMv_Click(object sender, RoutedEventArgs e)
         {
             var btnOption = sender as Button;
 
-            if(null != btnOption)
+            if (null != btnOption)
             {
                 string title = "";
 
@@ -59,7 +66,20 @@ namespace PROJECT
                     title = btnMv2.Content.ToString();
                 else if (btnOption == btnMv3)
                     title = btnMv3.Content.ToString();
-
+                else if (btnOption == btnMv4)
+                    title = btnMv4.Content.ToString();
+                else if (btnOption == btnMv5)
+                    title = btnMv5.Content.ToString();
+                else if (btnOption == btnMv6)
+                    title = btnMv6.Content.ToString();
+                else if (btnOption == btnMv7)
+                    title = btnMv7.Content.ToString();
+                else if (btnOption == btnMv8)
+                    title = btnMv8.Content.ToString();
+                else if (btnOption == btnMv9)
+                    title = btnMv9.Content.ToString();
+                else if (btnOption == btnMv10)
+                    title = btnMv10.Content.ToString();
 
                 // new Window and send extraData to Window1.xaml
                 Window1 w1 = new Window1(title);
