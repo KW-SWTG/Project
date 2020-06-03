@@ -153,8 +153,8 @@ namespace PROJECT
             {
                 var searchResult = searchListResponse.Items[i];
                 string review
-                    = "<html><body> " +
-                    "<iframe width=\"505\" height=\"320\" src=\"https://www.youtube.com/embed/" + searchResult.Id.VideoId + "\" frameborder=\"0\" " +
+                    = "<html><body marginheight=\"0\" marginwidth=\"0\" leftmargin=\"0\" topmargin=\"0\" style=\"overflow-y: hidden\"> " +
+                    "<iframe width=\"515\" height=\"340\" src=\"https://www.youtube.com/embed/" + searchResult.Id.VideoId + "\" frameborder=\"0\" " +
                     "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"ture\"></ifame>" +
                     "</body> </html>";
                 wvYoutubeReview.NavigateToString(review);
