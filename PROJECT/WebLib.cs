@@ -40,6 +40,20 @@ namespace PROJECT
             get { return genre;}
             set { if (value.Length > 0) genre = value; }
         }
+
+        private string[] actor;
+        public string[] Actor
+        {
+            get { return actor; }
+            set { if (value.Length > 0) actor = value; }
+        }
+
+        private string[] country;
+        public string[] Country
+        {
+            get { return country; }
+            set { if (value.Length > 0) country = value; }
+        }
     }
 
     class MovieDB
@@ -235,6 +249,8 @@ namespace PROJECT
                     tmp.Url = jMovie[i]["Url"].ToString();
                     tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
                     tmp.Genre = jMovie[i]["genre"].ToObject<string[]>();
+                    tmp.Actor = jMovie[i]["Actor"].ToObject<string[]>();
+                    tmp.Country = jMovie[i]["Country"].ToObject<string[]>();
                     movieInfos.Add(tmp);
                 }
             }
@@ -259,6 +275,8 @@ namespace PROJECT
                     tmp.Url = jMovie[i]["Url"].ToString();
                     tmp.MoviePoster = jMovie[i]["ImageUrl"].ToString();
                     tmp.Genre = jMovie[i]["genre"].ToObject<string[]>();
+                    tmp.Actor = jMovie[i]["Actor"].ToObject<string[]>();
+                    tmp.Country = jMovie[i]["Country"].ToObject<string[]>();
                     movieInfos.Add(tmp);
                 }
             }
