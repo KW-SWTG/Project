@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PROJECT"
         xmlns:controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
         mc:Ignorable="d"
-        Title="Window1" Height="800" Width="900" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" >
+        Title="Window1" Height="800" Width="900" WindowStyle="None"  WindowState="Normal" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" Closing="Window_Closing" >
 
     <Window.Background>
         <SolidColorBrush Color="Black" Opacity="0.6"/>
