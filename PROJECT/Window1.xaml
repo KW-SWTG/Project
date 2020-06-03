@@ -239,19 +239,19 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="1" Margin="20, 0, 20, 10">
-                    <Button x:Name="rePoster1" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
+                    <Button x:Name="rePoster1" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}" Click="rePosterOption_Click"/>
                 </Grid>
                 <Grid Grid.Column="2" Margin="20, 0, 20, 10">
-                    <Button x:Name="rePoster2" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
+                    <Button x:Name="rePoster2" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}" Click="rePosterOption_Click"/>
                 </Grid>
                 <Grid Grid.Column="3" Margin="20, 0, 20, 10">
-                    <Button x:Name="rePoster3" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
+                    <Button x:Name="rePoster3" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}" Click="rePosterOption_Click"/>
                 </Grid>
                 <Grid Grid.Column="4" Margin="20, 0, 20, 10">
-                    <Button x:Name="rePoster4" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
+                    <Button x:Name="rePoster4" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}" Click="rePosterOption_Click"/>
                 </Grid>
                 <Grid Grid.Column="5" Margin="20, 0, 20, 10">
-                    <Button x:Name="rePoster5" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"/>
+                    <Button x:Name="rePoster5" Content="Button" Height="200" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}" Click="rePosterOption_Click"/>
                 </Grid>
             </Grid>
         </ScrollViewer>
