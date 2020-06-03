@@ -271,6 +271,8 @@
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
+
                 </Grid.ColumnDefinitions>
 
 
@@ -303,6 +305,9 @@
                 </Grid>
                 <Grid Grid.Column="10" Margin="10">
                     <Button x:Name="Poster10" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="165" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                </Grid>
+                <Grid Grid.Column="11" Margin="10">
+                    <Button x:Name="Move" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="165" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
 
             </Grid>

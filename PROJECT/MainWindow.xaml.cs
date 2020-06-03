@@ -26,6 +26,7 @@ namespace PROJECT
     {
         List<MovieInfo> movieInfos;
         List<MovieInfo> rand10mov = new List<MovieInfo>();
+        List<MovieInfo> AlreadyShowlst = new List<MovieInfo>();
         List<MovieInfo> SelectedMovlst = new List<MovieInfo>();
         private int cnt = 0;
 
@@ -48,8 +49,9 @@ namespace PROJECT
         {
             
             var posterOption = sender as Button;
+            ClickedChange();
 
-            if(null != posterOption)
+            if (null != posterOption && posterOption.Name !="Move")
             {
                 cnt++;
                 
@@ -57,12 +59,12 @@ namespace PROJECT
                 if (btnnum == 0)
                     btnnum = 10;
                 SelectedMovlst.Add(rand10mov[btnnum - 1]);
-                ClickedChange();
-                
                 if (cnt == 30)
                 {
                     
                     List<string> Genre = RcmMovlst(SelectedMovlst);
+                    //List<string> Actor =
+                    //List<string> Country =
                     // 취향분석 알고리즘을 통해 얻은 추천영화 리스트
 
                     List<string> list = new List<string>();
@@ -77,14 +79,24 @@ namespace PROJECT
         private void ClickedChange()
         {
             var random = new Random();
-            
+                foreach (var Mov in rand10mov)
+                {
+                    AlreadyShowlst.Add(Mov);
+                }
             rand10mov.Clear();
             List<ImageBrush> brushes = new List<ImageBrush>();
 
             for (int k = 0; k < 10; k++)
             {
-                rand10mov.Add(movieInfos[random.Next(movieInfos.Count)]);
-                BitmapImage i = new BitmapImage(new Uri(rand10mov[k].MoviePoster, UriKind.RelativeOrAbsolute));
+                
+                var tempmov = movieInfos[random.Next(movieInfos.Count)];
+                while (tempmov.MoviePoster == "None" && AlreadyShowlst.Contains(tempmov)==true)
+                {
+                    tempmov = movieInfos[random.Next(movieInfos.Count)];
+                }
+
+                BitmapImage i = new BitmapImage(new Uri(tempmov.MoviePoster, UriKind.RelativeOrAbsolute));
+                rand10mov.Add(tempmov);
                 ImageBrush brush = new ImageBrush();
 
                 brush.ImageSource = i;
