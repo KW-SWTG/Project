@@ -132,5 +132,31 @@ namespace PROJECT
                 printRecommendMovies();
             }
         }
+
+        private void rePosterOption_Click(object sender, RoutedEventArgs e)
+        {
+            Button posterOption = sender as Button;
+            int index = -1;
+
+            if (posterOption.Name == rePoster1.Name)
+                index = 0;
+            else if (posterOption.Name == rePoster2.Name)
+                index = 1;
+            else if (posterOption.Name == rePoster3.Name)
+                index = 2;
+            else if (posterOption.Name == rePoster4.Name)
+                index = 3;
+            else if (posterOption.Name == rePoster5.Name)
+                index = 4;
+
+            if (index > -1)
+            {
+                string name = db.recommendMovies[index];
+
+                this.Close();
+                Window1 newWindow = new Window1(name);
+                newWindow.Show();
+            }
+        }
     }
 }
