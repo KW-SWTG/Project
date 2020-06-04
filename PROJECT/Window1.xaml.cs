@@ -136,6 +136,7 @@ namespace PROJECT
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 ApiKey = "AIzaSyCC13XkXYGADud9Wy5G_od0YL9r0mkVWAc",
+                //AIzaSyC4MUT8FOREAZ7_i8ieWNiMgiv2QdMn7YU
                 ApplicationName = this.GetType().ToString()
             });
 
