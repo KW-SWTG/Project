@@ -229,30 +229,28 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="1">
-
-                    <Image x:Name="mvImg" Height="281" Width="223" Margin="0,0,0,70" />
-                    <Label x:Name="mvName" VerticalAlignment="Bottom" IsEnabled="False" Foreground="White" FontSize="20" FontFamily="Myanmar Text" HorizontalAlignment="Center" Margin="0,0,0,50" FontWeight="Bold"  />
+                    <Rectangle x:Name="rate" Width="200" Height="80" Margin="0,0,0,-320" Fill="#FF323232" Stroke="#FFE8FF9B" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Image x:Name="mvImg" Height="230" Width="180" Margin="0,0,0,150" />
+                    <Label x:Name="mvName" VerticalAlignment="Bottom" IsEnabled="False" Foreground="White" FontSize="20" FontFamily="Myanmar Text" HorizontalAlignment="Center" Margin="0,0,0,130" FontWeight="Bold"  />
                     <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="100" Margin="156,-45,0,0" VerticalAlignment="Top" Width="100" Visibility="Hidden" LoadCompleted="webBrowser_LoadCompleted"/>
 
+                    <Label Content="전문가 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="97" Foreground="White" Margin="54,347,0,0" FontSize="15"/>
+                    <Label Content="관람객 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="89" Foreground="White" Margin="151,347,0,0" FontSize="15"/>
+                    <TextBox x:Name="audRate" HorizontalAlignment="Left" Margin="175,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontWeight="Bold" FontSize="14"/>
+                    <TextBox x:Name="proRate" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="75,385,0,0" FontWeight="Bold"/>
                 </Grid>
                 <Grid Grid.Column="2" Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition Height="220"/>
+                        <RowDefinition Height="275"/>
+                        <RowDefinition Height="145"/>
                     </Grid.RowDefinitions>
-                    <Rectangle x:Name="rate" Fill="#FF323232" Stroke="#FFE8FF9B" Margin="153,24,153,129" Grid.Row="1"/>
 
-                    <Label Content="전문가 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="97" Foreground="White" Margin="169,35,0,0" FontSize="15" Grid.Row="1"/>
-                    <Label Content="관람객 평점" HorizontalAlignment="Left" Height="31"  VerticalAlignment="Top" Width="89" Foreground="White" Margin="286,35,0,0" FontSize="15" Grid.Row="1"/>
-                    <TextBox x:Name="proRate" HorizontalAlignment="Left" Height="25"  TextWrapping="Wrap" VerticalAlignment="Top" Width="45" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="192,60,0,0" FontWeight="Bold" Grid.Row="1"/>
-                    <TextBox x:Name="audRate" HorizontalAlignment="Left" Margin="308,58,0,0" Height="27" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" FontWeight="Bold" FontSize="14" Grid.Row="1"/>
+                    <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Height="95" Margin="85,0,0,25" Stroke="#FFE8FF9B" VerticalAlignment="Bottom" Width="325" Grid.Row="1" />
 
-                    <Rectangle Fill="#FF323232" HorizontalAlignment="Left" Height="95" Margin="100,104,0,0" Stroke="#FFE8FF9B" VerticalAlignment="Top" Width="355" Grid.Row="1" />
-
-                    <Label Content="상영시간" HorizontalAlignment="Left" Width="60" Foreground="White" Margin="239,111,0,79" Grid.Row="1" />
-                    <Label Content="국가" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="110,136,0,56" Grid.Row="1"  />
-                    <Label Content="감독" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="239,136,0,56" Grid.Row="1" />
-                    <Label Content="관람등급" HorizontalAlignment="Left" Width="61" Foreground="White" Margin="109,165,0,28" Grid.Row="1" RenderTransformOrigin="0.5,0.5" >
+                    <Label Content="상영시간" HorizontalAlignment="Left" Width="60" Foreground="White" Margin="250,30,0,85" Grid.Row="1" />
+                    <Label Content="국가" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="100,60,0,57" Grid.Row="1"  />
+                    <Label Content="감독" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="250,65,0,50" Grid.Row="1" />
+                    <Label Content="관람등급" HorizontalAlignment="Left" Width="61" Foreground="White" Margin="99,88,0,-3" Grid.Row="1" RenderTransformOrigin="0.5,0.5" >
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -262,24 +260,15 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Content="장르" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="110,111,0,84" Grid.Row="1" />
-                    <TextBox x:Name="runningTimeTxt" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold" Margin="304,114,0,0" Grid.Row="1"/>
-                    <TextBox x:Name="directorTxt" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold" Margin="276,141,0,0" Grid.Row="1">
-                        <TextBox.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.661"/>
-                                <TranslateTransform X="14.994" Y="-0.015"/>
-                            </TransformGroup>
-                        </TextBox.RenderTransform>
-                    </TextBox>
-                    <TextBox x:Name="nationTxt" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold" Margin="148,137,0,0" Grid.Row="1"/>
-                    <TextBox x:Name="genreTxt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.85,0.586" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" Margin="148,114,0,0" Grid.Row="1"/>
-                    <TextBox x:Name="mvRatingTxt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" Margin="169,170,0,0" Grid.Row="1"/>
+                    <Label Content="장르" HorizontalAlignment="Left" Width="38" Foreground="White" Margin="100,30,0,90" Grid.Row="1" />
+                    <TextBox x:Name="runningTimeTxt" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold" Margin="310,34,0,0" Grid.Row="1"/>
+                    <TextBox x:Name="directorTxt" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontWeight="Bold" Margin="288,70,0,0" Grid.Row="1"/>
+                    <TextBox x:Name="nationTxt" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" FontWeight="Bold" Margin="138,65,0,0" Grid.Row="1"/>
+                    <TextBox x:Name="genreTxt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.85,0.586" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" Margin="138,33,0,0" Grid.Row="1"/>
+                    <TextBox x:Name="mvRatingTxt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" Margin="159,90,0,0" Grid.Row="1"/>
 
 
-                    <controls:WebView Name="wvYoutubeReview" Margin="10,0,10,10"/>
+                    <controls:WebView x:Name="wvYoutubeReview" Margin="10,0,10,10" Width="500"/>
                 </Grid>
 
             </Grid>
