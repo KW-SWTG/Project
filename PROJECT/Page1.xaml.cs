@@ -36,19 +36,39 @@ namespace PROJECT
         {
             // get 추천영화 리스트 10개(제목들, 카테고리) from MainWindow.xaml
             movieList = new List<string>(list);
+            printMovies(list);
+        }
 
-            // debug
-            btnMv1.Content = list[0];
-            btnMv2.Content = list[1];
-            btnMv3.Content = list[2];
-            btnMv4.Content = list[3];
-            btnMv5.Content = list[4];
-            btnMv6.Content = list[5];
-            btnMv7.Content = list[6];
-            btnMv8.Content = list[7];
-            btnMv9.Content = list[8];
-            btnMv10.Content = list[9];
+        private void printMovies(List<string> list)
+        {
+            List<ImageBrush> brushes = new List<ImageBrush>();
 
+            for (int i = 0; i < list.Count; i++)
+            {
+                string posterUrl = JsonLib.findPosterUrl(list[i], movieInfos);
+                if (posterUrl.Equals(""))
+                {
+                    brushes.Add(null);
+                    continue;
+                }
+
+                BitmapImage bitmapImg = new BitmapImage(new Uri(posterUrl, UriKind.RelativeOrAbsolute));
+                ImageBrush brush = new ImageBrush();
+
+                brush.ImageSource = bitmapImg;
+                brushes.Add(brush);
+            }
+
+            btnMv1.Background = brushes[0];
+            btnMv2.Background = brushes[1];
+            btnMv3.Background = brushes[2];
+            btnMv4.Background = brushes[3];
+            btnMv5.Background = brushes[4];
+            btnMv6.Background = brushes[5];
+            btnMv7.Background = brushes[6];
+            btnMv8.Background = brushes[7];
+            btnMv9.Background = brushes[8];
+            btnMv10.Background = brushes[9];
         }
 
         private void btnMv_Click(object sender, RoutedEventArgs e)
@@ -61,25 +81,25 @@ namespace PROJECT
 
                 // 영화 제목
                 if (btnOption == btnMv1)
-                    title = btnMv1.Content.ToString();
+                    title = movieList[0];
                 else if (btnOption == btnMv2)
-                    title = btnMv2.Content.ToString();
+                    title = movieList[1];
                 else if (btnOption == btnMv3)
-                    title = btnMv3.Content.ToString();
+                    title = movieList[2];
                 else if (btnOption == btnMv4)
-                    title = btnMv4.Content.ToString();
+                    title = movieList[3];
                 else if (btnOption == btnMv5)
-                    title = btnMv5.Content.ToString();
+                    title = movieList[4];
                 else if (btnOption == btnMv6)
-                    title = btnMv6.Content.ToString();
+                    title = movieList[5];
                 else if (btnOption == btnMv7)
-                    title = btnMv7.Content.ToString();
+                    title = movieList[6];
                 else if (btnOption == btnMv8)
-                    title = btnMv8.Content.ToString();
+                    title = movieList[7];
                 else if (btnOption == btnMv9)
-                    title = btnMv9.Content.ToString();
+                    title = movieList[8];
                 else if (btnOption == btnMv10)
-                    title = btnMv10.Content.ToString();
+                    title = movieList[9];
 
                 // new Window and send extraData to Window1.xaml
                 Window1 w1 = new Window1(title);
