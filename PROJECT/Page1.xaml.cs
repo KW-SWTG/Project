@@ -27,7 +27,7 @@ namespace PROJECT
         public Page1(List<string> list)
         {
             InitializeComponent();
-            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList2"];
 
             Init(list);
         }

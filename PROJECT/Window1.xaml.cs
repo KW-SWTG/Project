@@ -40,7 +40,7 @@ namespace PROJECT
             InitializeComponent();
             CenterWindowOnScreen();
 
-            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList2"];
             InitMovie(extraData);
 
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);

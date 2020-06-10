@@ -29,13 +29,24 @@ namespace PROJECT
         List<MovieInfo> AlreadyShowlst = new List<MovieInfo>();
         List<MovieInfo> SelectedMovlst = new List<MovieInfo>();
         List<MovieInfo> RecommandMovieInfos = new List<MovieInfo>();
+        List<Button> btnlist = new List<Button>();
         private int cnt = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList2"];
-            RecommandMovieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
+            btnlist.Add(poster1);
+            btnlist.Add(poster2);
+            btnlist.Add(poster3);
+            btnlist.Add(poster4);
+            btnlist.Add(Poster5);
+            btnlist.Add(Poster6);
+            btnlist.Add(Poster7);
+            btnlist.Add(Poster8);
+            btnlist.Add(Poster9);
+            btnlist.Add(Poster10);
+            movieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList"];
+            RecommandMovieInfos = (List<MovieInfo>)Application.Current.Properties["mvInfoList2"];
             ClickedChange();
 
             this.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseLeftButtonDown);
@@ -50,16 +61,18 @@ namespace PROJECT
         {
 
             var posterOption = sender as Button;
-
-            if (null != posterOption && posterOption.Name != "Move")
+            if (posterOption.Name == "Move")
             {
-                cnt++;
 
-                int btnnum = Convert.ToInt32(posterOption.Name.ToString().Last().ToString());
-                if (btnnum == 0)
-                    btnnum = 10;
-                SelectedMovlst.Add(rand10mov[btnnum - 1]);
-                if (cnt == 10)
+                for (int i = 0; i < 10; i++)
+                {
+                    if (btnlist[i].Tag.ToString() == "checked")
+                    {
+                        SelectedMovlst.Add(rand10mov[i]);
+                        cnt++;
+                    }
+                }
+                if (cnt >= 30)
                 {
 
                     List<string> Genre = RcmMovlst(SelectedMovlst);
@@ -72,18 +85,37 @@ namespace PROJECT
                         Console.WriteLine(item);
                     }
                     List<string> list = new List<string>();
-                    string[] Movielst = { "라라랜드", "코코", "어벤져스", "택시운전사", "1917", "신세계" };
-                    list.AddRange(Movielst);
+
 
                     Page1 p1 = new Page1(Rcmlst);
                     this.Content = p1;
                 }
             }
             ClickedChange();
+        }
+        private void PosterClick(object sender, RoutedEventArgs e)
+        {
+
+            var posterOption = sender as Button;
+            if (posterOption.Tag.ToString() == "unchecked")
+            {
+                posterOption.Tag = "checked";
+                posterOption.BorderThickness = new Thickness(10);
+                posterOption.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                posterOption.Tag = "unchecked";
+                posterOption.BorderThickness = new Thickness(1);
+                posterOption.BorderBrush = Brushes.Black;
+            }
 
         }
+
         private void ClickedChange()
         {
+
+            initPoster();
             var random = new Random();
             foreach (var Mov in rand10mov)
             {
@@ -109,18 +141,24 @@ namespace PROJECT
                 brushes.Add(brush);
             }
 
-            poster1.Background = brushes[0];
-            poster2.Background = brushes[1];
-            poster3.Background = brushes[2];
-            poster4.Background = brushes[3];
-            Poster5.Background = brushes[4];
-            Poster6.Background = brushes[5];
-            Poster7.Background = brushes[6];
-            Poster8.Background = brushes[7];
-            Poster9.Background = brushes[8];
-            Poster10.Background = brushes[9];
+
+            for (int i = 0; i < 10; i++)
+            {
+                btnlist[i].Background = brushes[i];
+            }
         }
 
+
+        private void initPoster()
+        {
+
+            foreach (var item in btnlist)
+            {
+                item.Tag = "unchecked";
+                item.BorderBrush = Brushes.Black;
+                item.BorderThickness = new Thickness(1);
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -313,72 +351,73 @@ namespace PROJECT
             int GenreCounts = Genrelst.Count();
             var tempmov = new MovieInfo();
             var random = new Random();
-            int count = 0;
             switch (GenreCounts)
             {
                 case 1:
-                    while (count != 10)
+                    while (Recommandlst.Count() != 10)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
                     break;
                 case 2:
-                    while (count != 4)
+                    while (Recommandlst.Count() != 4)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
-                    while (count != 7)
+                    while (Recommandlst.Count() != 7)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
-                    while (count != 10)
+                    while (Recommandlst.Count() != 10)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
                     break;
                 case 3:
-                    while (count != 10)
+                    while (Recommandlst.Count() != 10)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
                     break;
                 case 4:
-                    while (count != 10)
+                    while (Recommandlst.Count() != 10)
                     {
                         tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
                         if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
                         {
                             Recommandlst.Add(tempmov.MovieName);
-                            count += 1;
                         }
                     }
                     break;
                 default:
+                    while (Recommandlst.Count() != 10)
+                    {
+                        tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
+                        if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                        {
+                            Recommandlst.Add(tempmov.MovieName);
+                        }
+                    }
                     break;
             }
             return Recommandlst;

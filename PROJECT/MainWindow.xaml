@@ -25,6 +25,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Checked.Border" Color="#FF838383"/>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -37,7 +38,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -49,8 +50,7 @@
 
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FFB3DC8A"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="red"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -142,9 +142,9 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-        
-        
-        
+
+
+
 
         <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
             <Setter Property="Template">
@@ -258,7 +258,7 @@
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
 
-            <Grid>
+            <Grid x:Name="MyGrid">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -278,34 +278,34 @@
 
 
                 <Grid Grid.Column="1" Margin="10">
-                    <Button x:Name="poster1"  HorizontalAlignment="Center" Height="267"  VerticalAlignment="Center" Width="180" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster1"  HorizontalAlignment="Center" Height="267"  VerticalAlignment="Center" Width="180" Click="PosterClick" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="2" Margin="10">
-                    <Button x:Name="poster2" HorizontalAlignment="Left"  Height="267"  VerticalAlignment="Center" Width="180" Click="posterOption_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster2" HorizontalAlignment="Left"  Height="267"  VerticalAlignment="Center" Width="180" Click="PosterClick" Foreground="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="3" Margin="10">
-                    <Button x:Name="poster3" HorizontalAlignment="Left" Height="267"  VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster3" HorizontalAlignment="Left" Height="267"  VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="4" Margin="10">
-                    <Button x:Name="poster4"  HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}"  Style="{DynamicResource ButtonStyle1}"></Button>
+                    <Button x:Name="poster4"  HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}"  Style="{DynamicResource ButtonStyle1}"></Button>
                 </Grid>
                 <Grid Grid.Column="5" Margin="10">
-                    <Button x:Name="Poster5" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster5" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="6" Margin="10">
-                    <Button x:Name="Poster6" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster6" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="7" Margin="10">
-                    <Button x:Name="Poster7" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster7" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="8" Margin="10">
-                    <Button x:Name="Poster8" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster8" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="9" Margin="10">
-                    <Button x:Name="Poster9" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster9" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="10" Margin="10">
-                    <Button x:Name="Poster10" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="posterOption_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
+                    <Button x:Name="Poster10" HorizontalAlignment="Left" Height="267" VerticalAlignment="Center" Width="180" Click="PosterClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{DynamicResource ButtonStyle1}" Background="red"></Button>
                 </Grid>
                 <Grid Grid.Column="11" Margin="10">
                     <Button x:Name="Move" Content="Next" HorizontalAlignment="Left" FontSize="20" Width="60" Height="30" VerticalAlignment="Center" Click="posterOption_Click" Background="#FFE4F95E" BorderBrush="{x:Null}" Foreground="Black" Style="{DynamicResource ButtonStyle2}" FontWeight="Bold"/>
