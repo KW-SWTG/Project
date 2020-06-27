@@ -339,7 +339,7 @@ namespace PROJECT
             foreach (KeyValuePair<string, int> tt in sortedmovieDic)
             {
                 Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
-                if (tt.Value > 15)
+                if (tt.Value > 20)
                     RCountrylst.Add(tt.Key);
             }
             if (RCountrylst.Count() < 1)
