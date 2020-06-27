@@ -139,11 +139,11 @@ namespace PROJECT
                 //AIzaSyC4MUT8FOREAZ7_i8ieWNiMgiv2QdMn7YU
                 ApplicationName = this.GetType().ToString()
             });
-
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = db.title + "리뷰"; // Replace with your search term.
-            searchListRequest.MaxResults = 2;
-
+            searchListRequest.MaxResults = 1;
+            searchListRequest.Type = "video";
+            //searchListRequest.Fields = "items(id.videoId, snippet.channelId)";
 
             var searchListResponse = searchListRequest.Execute();
 
