@@ -233,8 +233,8 @@ namespace PROJECT
                 gsArr.Add(tt.Value);
             }
 
-            Console.WriteLine(averageGenreSC / sortedmovieDic.Count());
-            Console.WriteLine(StdDev(gsArr));
+            Console.WriteLine("AVG "+averageGenreSC / sortedmovieDic.Count());
+            Console.WriteLine("STD " + StdDev(gsArr));
 
 
             //장르별로 표준편차 계산
@@ -257,11 +257,12 @@ namespace PROJECT
                     }
                     break;
                 case 2:
-                    foreach (KeyValuePair<string, double> tt in sortedmovieDic)
-                    {
-                        if (tt.Value > averageGenreSC / sortedmovieDic.Count() - StdDev(gsArr))
-                            Fgenrelst.Add(tt.Key);
-                    }
+                    //foreach (KeyValuePair<string, double> tt in sortedmovieDic)
+                    //{
+                    //    if (tt.Value > averageGenreSC / sortedmovieDic.Count() - StdDev(gsArr))
+                    //        Fgenrelst.Add(tt.Key);
+                    //}
+                    Fgenrelst.Add(sortedmovieDic.ElementAt(0).Key);
                     break;
                 default:
                     Console.WriteLine("Wrong Genre Search");
@@ -302,7 +303,7 @@ namespace PROJECT
             foreach (KeyValuePair<string, int> tt in sortedmovieDic)
             {
                 Console.WriteLine("key:{0}, Value:{1}", tt.Key, tt.Value);
-                if (tt.Value > 4)
+                if (tt.Value > 8)
                     RActorlst.Add(tt.Key);
             }
             if (RActorlst.Count() < 1)
@@ -372,7 +373,7 @@ namespace PROJECT
                         while (Recommandlst.Count() != 10)
                         {
                             tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                            if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                            if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                             {
                                 Recommandlst.Add(tempmov.MovieName);
                             }
@@ -393,7 +394,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0]==Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0]==Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -403,7 +404,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 5)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -411,7 +412,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -419,7 +420,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -429,7 +430,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 4 || movCount < 30000)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Contains(Genrelst[2]) && tempmov.Genre.Count() == 3 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Contains(Genrelst[2]) && tempmov.Genre.Count() == 3 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -438,7 +439,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 7)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -446,7 +447,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -456,7 +457,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0])
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && tempmov.Country[0] == Countrylst[0] && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -473,7 +474,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -483,7 +484,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 4)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Count() == 2 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -491,7 +492,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 7)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -499,7 +500,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -509,7 +510,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 4 || movCount < 30000)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Contains(Genrelst[2]) && tempmov.Genre.Count() == 3)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Contains(Genrelst[1]) && tempmov.Genre.Contains(Genrelst[2]) && tempmov.Genre.Count() == 3 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -518,7 +519,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 7)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -526,7 +527,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[1]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
@@ -536,7 +537,7 @@ namespace PROJECT
                             while (Recommandlst.Count() != 10)
                             {
                                 tempmov = RecommandMovieInfos[random.Next(RecommandMovieInfos.Count())];
-                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1)
+                                if (tempmov.Genre != null && tempmov.Genre.Contains(Genrelst[0]) == true && tempmov.Genre.Count() == 1 && Recommandlst.Contains(tempmov.MovieName) == false)
                                 {
                                     Recommandlst.Add(tempmov.MovieName);
                                 }
